@@ -23,7 +23,8 @@ public class Drive extends Subsystem {
 
   public Drive(){
     super();
-  }
+    leftmotor.setInverted(true);
+  } 
   
   public void setSpeed(double leftSpeed, double rightSpeed){
     leftmotor.set(leftSpeed);
@@ -37,7 +38,8 @@ public class Drive extends Subsystem {
   }
 
   public void stop(){
-    setSpeed(0,0);
+    leftmotor.stopMotor();
+    rightmotor.stopMotor();
   }
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
