@@ -32,9 +32,39 @@ public class Drive extends Subsystem {
   }
 
   public void driveJoystick(Joystick joystick){
-    double leftSpeed = joystick.getRawAxis(1) - joystick.getRawAxis(0);
-    double rightSpeed = joystick.getRawAxis(1) + joystick.getRawAxis(0);
+    double leftSpeed = interpretSpeed(joystick.getRawAxis(1)) - interpretSpeed(joystick.getRawAxis(0));
+    double rightSpeed = interpretSpeed(joystick.getRawAxis(1)) + interpretSpeed(joystick.getRawAxis(0));
     setSpeed(leftSpeed, rightSpeed);
+  }
+
+  public double deadZone(double speed)
+  {
+    if (Math.abs(speed) < .05)
+    {
+      return 0;
+    }
+    else
+      return speed;
+  }
+
+  public double squareSpeed(double speed)
+  {
+    if (speed < 0)
+    {
+      speed = -(speed * speed);
+    }
+    else
+    {
+      speed = speed * speed;
+    }
+    return speed;
+  }
+
+  public double interpretSpeed(double speed)
+  {
+    speed = squareSpeed(speed);
+    speed = deadZone(speed);
+    return speed;
   }
 
   public void stop(){
