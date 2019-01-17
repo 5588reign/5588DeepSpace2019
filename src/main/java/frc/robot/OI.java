@@ -8,6 +8,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import frc.robot.commands.HatchGrabber;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -15,6 +22,15 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class OI {
   private final Joystick driverJoystick = new Joystick(0);
+  private final XboxController manipulatorJoystick = new XboxController(1);
+
+  Button hatchGrabButton = new JoystickButton(manipulatorJoystick, 1);
+  Button hatchReleaseButton = new JoystickButton(manipulatorJoystick, 2);
+
+  public OI(){
+    hatchGrabButton.whenPressed(new HatchGrabber(DoubleSolenoid.Value.kForward));
+    hatchReleaseButton.whenPressed(new HatchGrabber(DoubleSolenoid.Value.kReverse));
+  }
 
   public Joystick getDriverJoystick(){
     return driverJoystick;

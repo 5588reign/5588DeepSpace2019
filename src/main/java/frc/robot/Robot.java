@@ -14,9 +14,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.I2Csubsystem;
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,6 +34,7 @@ public class Robot extends TimedRobot {
   public static UsbCamera camera2;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+  
 
   /**
    * This function is run when the robot is first started up and should be
@@ -41,7 +43,13 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    m_chooser.setDefaultOption("Default Auto", new Command(){
+    
+      @Override
+      protected boolean isFinished() {
+        return false;
+      }
+    });
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
    

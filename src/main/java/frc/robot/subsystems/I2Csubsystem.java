@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.LightSensor;
 
@@ -16,6 +17,8 @@ import frc.robot.commands.LightSensor;
 public class I2Csubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  // last three zeros are place holders until we find the rest of the address
+  private final I2C i2CReader = new I2C(I2C.Port.kOnboard, 0100000);
 
   @Override
   public void initDefaultCommand() {
