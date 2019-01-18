@@ -19,7 +19,7 @@ public class RobotMap {
   public static int leftDriveMotor = 2;
   public static int rightDriveMotor = 0;
 
-  public static DoubleSolenoid hatchGrabber = new DoubleSolenoid(6,7);
+  public static DoubleSolenoid hatchGrabber = new DoubleSolenoid(1,0);
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;

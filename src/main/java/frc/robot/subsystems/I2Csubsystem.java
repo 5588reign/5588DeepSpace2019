@@ -18,12 +18,28 @@ public class I2Csubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   // last three zeros are place holders until we find the rest of the address
-  private final I2C i2CReader = new I2C(I2C.Port.kOnboard, 0100000);
+  private static final I2C i2CWriter = new I2C(I2C.Port.kOnboard, 0x20);
+  private final I2C i2CReader = new I2C(I2C.Port.kOnboard, 65);
+
+  public void writeToLight(boolean turnOn){
+    
+    if (turnOn)
+    {
+      i2CWriter.write(0, 0);
+      
+    }
+    else 
+    {
+      i2CWriter.write(0xff,0xff);
+
+    }
+
+  }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new LightSensor());
+    setDefaultCommand(new LightSensor(true));
   }
 
 }

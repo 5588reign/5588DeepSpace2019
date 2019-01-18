@@ -12,8 +12,10 @@ import frc.robot.Robot;
 import frc.robot.subsystems.I2Csubsystem;
 
 public class LightSensor extends Command {
-  public LightSensor() {
+  boolean turnOn;
+  public LightSensor(boolean turnOn) {
     requires(Robot.i2Csub);
+    this.turnOn = turnOn;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -21,6 +23,7 @@ public class LightSensor extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.i2Csub.writeToLight(turnOn);
   }
 
   // Called repeatedly when this Command is scheduled to run

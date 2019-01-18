@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.commands.HatchGrabber;
+import frc.robot.commands.LightSensor;
 
 
 /**
@@ -27,9 +28,14 @@ public class OI {
   Button hatchGrabButton = new JoystickButton(manipulatorJoystick, 1);
   Button hatchReleaseButton = new JoystickButton(manipulatorJoystick, 2);
 
+  Button turnLightOnButton = new JoystickButton(manipulatorJoystick, 3);
+  Button turnLightOffButton = new JoystickButton(manipulatorJoystick, 4);
+
   public OI(){
     hatchGrabButton.whenPressed(new HatchGrabber(DoubleSolenoid.Value.kForward));
     hatchReleaseButton.whenPressed(new HatchGrabber(DoubleSolenoid.Value.kReverse));
+    turnLightOnButton.whenPressed(new LightSensor(true));
+    turnLightOffButton.whenPressed(new LightSensor(false));
   }
 
   public Joystick getDriverJoystick(){

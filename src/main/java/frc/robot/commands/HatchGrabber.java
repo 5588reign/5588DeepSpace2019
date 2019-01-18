@@ -32,7 +32,7 @@ public class HatchGrabber extends Command {
     c.setClosedLoopControl(true);
     RobotMap.hatchGrabber.set(value);
     System.out.println(RobotMap.hatchGrabber.get());
-    System.out.println(RobotMap.hatchGrabber.isRevSolenoidBlackListed());
+
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -49,6 +49,7 @@ public class HatchGrabber extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    //RobotMap.hatchGrabber.set(DoubleSolenoid.Value.kOff);
   }
 
   // Called when another command which requires one or more of the same
