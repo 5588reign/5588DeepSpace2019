@@ -24,6 +24,7 @@ public class LightSensor extends Command {
   @Override
   protected void initialize() {
     Robot.i2Csub.writeToLight(turnOn);
+    Robot.i2Csub.readFromLight();
   }
 
   // Called repeatedly when this Command is scheduled to run

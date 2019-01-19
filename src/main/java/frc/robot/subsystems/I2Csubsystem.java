@@ -19,7 +19,7 @@ public class I2Csubsystem extends Subsystem {
   // here. Call these from Commands.
   // last three zeros are place holders until we find the rest of the address
   private static final I2C i2CWriter = new I2C(I2C.Port.kOnboard, 0x20);
-  private final I2C i2CReader = new I2C(I2C.Port.kOnboard, 65);
+  private final I2C i2CReader = new I2C(I2C.Port.kOnboard, 0x21);
 
   public void writeToLight(boolean turnOn){
     
@@ -36,6 +36,13 @@ public class I2Csubsystem extends Subsystem {
 
   }
 
+  public void readFromLight()
+  {
+    byte[] b = new byte[1];
+    i2CReader.readOnly(b, b.length);
+    String s1 = String.format("%8s", Integer.toBinaryString(b[0] & 0xFF)).replace(' ', '0');
+    System.out.println(s1);
+  }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
