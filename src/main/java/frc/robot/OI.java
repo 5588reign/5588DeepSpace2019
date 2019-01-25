@@ -28,14 +28,14 @@ public class OI {
   Button hatchGrabButton = new JoystickButton(manipulatorJoystick, 1);
   Button hatchReleaseButton = new JoystickButton(manipulatorJoystick, 2);
 
-  Button turnLightOnButton = new JoystickButton(manipulatorJoystick, 3);
-  Button turnLightOffButton = new JoystickButton(manipulatorJoystick, 4);
+  Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, 3);
+
+
 
   public OI(){
     hatchGrabButton.whenPressed(new HatchGrabber(DoubleSolenoid.Value.kForward));
     hatchReleaseButton.whenPressed(new HatchGrabber(DoubleSolenoid.Value.kReverse));
-    turnLightOnButton.whenPressed(new LightSensor(true));
-    turnLightOffButton.whenPressed(new LightSensor(false));
+    lightAlignmentButton.whileHeld(new LightSensor());
   }
 
   public Joystick getDriverJoystick(){
