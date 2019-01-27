@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -18,13 +19,35 @@ import frc.robot.commands.JoystickDrive;
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class Drive extends Subsystem {
-  private final SpeedController leftmotor = new VictorSP(RobotMap.leftDriveMotor);
-  private final SpeedController rightmotor = new VictorSP(RobotMap.rightDriveMotor);
+  //distance per pulse = pi * the wheel diameter in inches / pulse per revolution * fudge factor
+  private static final double DISTANCE_PER_PULSE_INCHES = (Math.PI * 5.85) / 265 * 1;
+  private final SpeedController leftmotor = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR);
+  private final SpeedController rightmotor = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR);
+
+  private final Encoder leftEncoder = new Encoder(RobotMap.LEFT_ENCODER_SOURCE_A, RobotMap.LEFT_ENCODER_SOURCE_B);
+  private final Encoder rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER_SOURCE_A, RobotMap.RIGHT_ENCODER_SOURCE_B);
+
 
   public Drive(){
     super();
     leftmotor.setInverted(true);
+    rightEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
+    leftEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
+    leftEncoder.setReverseDirection(true);
   } 
+
+  public void resetEncoders(){
+    leftEncoder.reset();
+    rightEncoder.reset();
+  }
+
+  public double getRightEncoderDistance(){
+    return rightEncoder.getDistance();
+  }
+
+  public double getLeftEncoderDistance(){
+    return leftEncoder.getDistance();
+  }
   
   public void setSpeed(double leftSpeed, double rightSpeed){
     leftmotor.set(leftSpeed);

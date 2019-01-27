@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import frc.robot.commands.EncoderDrive;
 import frc.robot.commands.HatchGrabber;
 import frc.robot.commands.LightSensor;
 import frc.robot.commands.LiftCommand;
@@ -34,6 +35,8 @@ public class OI {
   Button liftUpButton = new JoystickButton(driverJoystick, 6);
   Button liftDownButton = new JoystickButton(driverJoystick, 4);
 
+  Button runFor30Inches = new JoystickButton(driverJoystick, 8);
+
 
   public OI(){
     hatchGrabButton.whenPressed(new HatchGrabber(DoubleSolenoid.Value.kForward));
@@ -41,6 +44,7 @@ public class OI {
     lightAlignmentButton.whileHeld(new LightSensor());
     liftUpButton.whileHeld(new LiftCommand(0.3));
     liftDownButton.whileHeld(new LiftCommand(-0.3));
+    runFor30Inches.whenPressed(new EncoderDrive(30,0.3));
   }
 
   public Joystick getDriverJoystick(){
