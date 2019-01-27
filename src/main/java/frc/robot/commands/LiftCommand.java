@@ -11,10 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class LiftCommand extends Command {
-  public LiftCommand() {
+  double percentSpeed = 0;
+  public LiftCommand(double percentSpeed) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.lift);
+    this.percentSpeed = percentSpeed;
   }
 
   // Called just before this Command runs the first time
@@ -25,6 +27,8 @@ public class LiftCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.lift.setSpeed(percentSpeed);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -10,6 +10,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.LiftCommand;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /**
@@ -21,10 +23,22 @@ public class Lift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
+  public Lift ()
+  {
+    liftMotor.configFactoryDefault();
+    liftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    liftMotor.setInverted(true);
+  }
+
+  public void setSpeed(double percentSpeed)
+  {
+    liftMotor.set(ControlMode.PercentOutput, percentSpeed);
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new LiftCommand());
+    setDefaultCommand(new LiftCommand(0));
   }
 }
