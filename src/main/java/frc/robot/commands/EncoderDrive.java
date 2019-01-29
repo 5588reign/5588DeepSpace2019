@@ -15,6 +15,8 @@ public class EncoderDrive extends Command {
   private double leftEncoderDistance = 0;
   private double distance;
   private double speed;
+  private double correctingLeft = 0;
+  private double correctingRight = 0;
 
   public EncoderDrive(double distance, double speed) {
     // Use requires() here to declare subsystem dependencies
@@ -35,7 +37,22 @@ public class EncoderDrive extends Command {
   protected void execute() {
     rightEncoderDistance = Robot.drive.getRightEncoderDistance();
     leftEncoderDistance = Robot.drive.getLeftEncoderDistance();
-    Robot.drive.setSpeed(speed, speed);
+
+    if (rightEncoderDistance - leftEncoderDistance >= 0.05) {
+      correctingLeft = .1;
+      System.out.println("Activated Correcting Left:");
+    }
+
+    if (leftEncoderDistance - rightEncoderDistance >= 0.05) {
+      correctingRight = .1;
+      System.out.println("Activated Correcting Right:");
+    }
+
+    Robot.drive.setSpeed(speed + correctingLeft, speed + correctingRight);
+
+    correctingLeft = 0;
+    correctingRight = 0;
+
     System.out.println("Right encoder: " + rightEncoderDistance);
     System.out.println("Left encoder: " + leftEncoderDistance);
   }

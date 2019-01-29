@@ -34,8 +34,8 @@ public class Drive extends Subsystem {
     rightmotor.setInverted(true);
     rightEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
     leftEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
-    leftEncoder.setReverseDirection(false);
-    rightEncoder.setReverseDirection(true);
+    leftEncoder.setReverseDirection(true);
+    rightEncoder.setReverseDirection(false);
   } 
 
   public void resetEncoders(){

@@ -44,7 +44,7 @@ public class OI {
     lightAlignmentButton.whileHeld(new LightSensor());
     liftUpButton.whileHeld(new LiftCommand(0.3));
     liftDownButton.whileHeld(new LiftCommand(-0.3));
-    runFor30Inches.whenPressed(new EncoderDrive(30,0.3));
+    runFor30Inches.whenPressed(new EncoderDrive(100,0.3));
   }
 
   public Joystick getDriverJoystick(){

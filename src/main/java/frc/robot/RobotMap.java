@@ -19,11 +19,11 @@ public class RobotMap {
   public static final int LEFT_DRIVE_MOTOR = 2;
   public static final int RIGHT_DRIVE_MOTOR = 0;
 
-  public static final int LEFT_ENCODER_SOURCE_A = 2;
-  public static final int LEFT_ENCODER_SOURCE_B = 3;
-  
-  public static final int RIGHT_ENCODER_SOURCE_A = 0;
-  public static final int RIGHT_ENCODER_SOURCE_B = 1;
+  public static final int LEFT_ENCODER_SOURCE_A = 0;
+  public static final int LEFT_ENCODER_SOURCE_B = 1;
+
+  public static final int RIGHT_ENCODER_SOURCE_A = 2;
+  public static final int RIGHT_ENCODER_SOURCE_B = 3;
 
   public static DoubleSolenoid hatchGrabber = new DoubleSolenoid(1,0);
 
