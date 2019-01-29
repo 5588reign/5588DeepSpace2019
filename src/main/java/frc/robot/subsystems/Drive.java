@@ -30,10 +30,12 @@ public class Drive extends Subsystem {
 
   public Drive(){
     super();
-    leftmotor.setInverted(true);
+    leftmotor.setInverted(false);
+    rightmotor.setInverted(true);
     rightEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
     leftEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
-    leftEncoder.setReverseDirection(true);
+    leftEncoder.setReverseDirection(false);
+    rightEncoder.setReverseDirection(true);
   } 
 
   public void resetEncoders(){
@@ -55,8 +57,8 @@ public class Drive extends Subsystem {
   }
 
   public void driveJoystick(Joystick joystick){
-    double leftSpeed = interpretSpeed(joystick.getRawAxis(1)) - interpretSpeed(joystick.getRawAxis(0));
-    double rightSpeed = interpretSpeed(joystick.getRawAxis(1)) + interpretSpeed(joystick.getRawAxis(0));
+    double leftSpeed = interpretSpeed(-joystick.getRawAxis(1)) + interpretSpeed(joystick.getRawAxis(0));
+    double rightSpeed = interpretSpeed(-joystick.getRawAxis(1)) - interpretSpeed(joystick.getRawAxis(0));
     setSpeed(leftSpeed, rightSpeed);
   }
 
