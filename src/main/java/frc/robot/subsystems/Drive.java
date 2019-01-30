@@ -14,11 +14,12 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.JoystickDrive;
+import frc.robot.*;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class Drive extends Subsystem {
+public class Drive extends Subsystem implements MotherSystem{
   //distance per pulse = pi * the wheel diameter in inches / pulse per revolution * fudge factor
   private static final double DISTANCE_PER_PULSE_INCHES = (Math.PI * 5.85) / 265 * 1;
   private final SpeedController leftmotor = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR);
@@ -61,7 +62,6 @@ public class Drive extends Subsystem {
     double rightSpeed = interpretSpeed(-joystick.getRawAxis(1)) - interpretSpeed(joystick.getRawAxis(0));
     setSpeed(leftSpeed, rightSpeed);
   }
-
 
   public double deadZone(double speed)
   {

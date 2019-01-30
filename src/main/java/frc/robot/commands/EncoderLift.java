@@ -10,12 +10,17 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LiftCommand extends Command {
-  public LiftCommand() {
+public class EncoderLift extends Command {
+  double lifterEncoderDistance = 0;
+  double speed;
+  double distance;
+  public EncoderLift(double speed, double distance) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    this.speed = speed;
+    this.distance = distance;
     requires(Robot.lift);
-  }
+    }
 
   // Called just before this Command runs the first time
   @Override
@@ -25,8 +30,8 @@ public class LiftCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.lift.liftToggleXbox(Robot.m_oi.getXboxController());
-
+    lifterEncoderDistance = Robot.lift.getLifterEncoderDistance();
+    Robot.lift.setSpeed(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()

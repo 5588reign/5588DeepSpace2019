@@ -12,11 +12,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import frc.robot.commands.EncoderDrive;
 import frc.robot.commands.HatchGrabber;
 import frc.robot.commands.LightSensor;
-import frc.robot.commands.LiftCommand;
+import frc.robot.commands.EncoderLift;
 
 
 /**
@@ -27,28 +25,33 @@ public class OI {
   private final Joystick driverJoystick = new Joystick(0);
   private final XboxController manipulatorJoystick = new XboxController(1);
 
-  Button hatchGrabButton = new JoystickButton(manipulatorJoystick, 1);
-  Button hatchReleaseButton = new JoystickButton(manipulatorJoystick, 2);
+  Button hatchGrabButton = new JoystickButton(manipulatorJoystick, 5);
+  Button hatchReleaseButton = new JoystickButton(manipulatorJoystick, 6);
 
-  Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, 3);
+  Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, 8);
 
-  Button liftUpButton = new JoystickButton(driverJoystick, 6);
-  Button liftDownButton = new JoystickButton(driverJoystick, 4);
-
-  Button runFor30Inches = new JoystickButton(driverJoystick, 8);
+  Button firstLevelLift = new JoystickButton(manipulatorJoystick, 1);
+  Button secondLevelLift = new JoystickButton(manipulatorJoystick, 3);
+  Button thirdLevelLift = new JoystickButton(manipulatorJoystick, 4);
+ 
 
 
   public OI(){
     hatchGrabButton.whenPressed(new HatchGrabber(DoubleSolenoid.Value.kForward));
     hatchReleaseButton.whenPressed(new HatchGrabber(DoubleSolenoid.Value.kReverse));
     lightAlignmentButton.whileHeld(new LightSensor());
-    liftUpButton.whileHeld(new LiftCommand(0.3));
-    liftDownButton.whileHeld(new LiftCommand(-0.3));
-    runFor30Inches.whenPressed(new EncoderDrive(100,0.3));
+    firstLevelLift.whenPressed(new EncoderLift(0.3,0));
+    secondLevelLift.whenPressed(new EncoderLift(0.3,40));
+    thirdLevelLift.whenPressed(new EncoderLift(0.3,60));
+    
   }
 
   public Joystick getDriverJoystick(){
     return driverJoystick;
+  }
+
+  public XboxController getXboxController() {
+    return manipulatorJoystick;
   }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
