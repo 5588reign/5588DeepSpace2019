@@ -31,8 +31,7 @@ public class OI {
   private final Joystick driverJoystick = new Joystick(0);
   private final XboxController manipulatorJoystick = new XboxController(1);
 
-  Button hatchGrabButton = new JoystickButton(manipulatorJoystick, LEFT_BUMPER_XBOX);
-  Button hatchReleaseButton = new JoystickButton(manipulatorJoystick, RIGHT_BUMPER_XBOX);
+  Button hatchGrabberButton = new JoystickButton(manipulatorJoystick, RIGHT_BUMPER_XBOX);
 
   Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, START_ARROW);
 
@@ -42,17 +41,15 @@ public class OI {
  
 
 
-  public OI(){
-    hatchGrabButton.whenPressed(new HatchGrabber(DoubleSolenoid.Value.kForward));
-    hatchReleaseButton.whenPressed(new HatchGrabber(DoubleSolenoid.Value.kReverse));
+  public OI() {
+    hatchGrabberButton.whenPressed(new HatchGrabber(true));
     lightAlignmentButton.whileHeld(new LightSensor());
     firstLevelLift.whenPressed(new EncoderLift(0.3,0));
     secondLevelLift.whenPressed(new EncoderLift(0.3,40));
     thirdLevelLift.whenPressed(new EncoderLift(0.3,60));
-    
   }
 
-  public Joystick getDriverJoystick(){
+  public Joystick getDriverJoystick() {
     return driverJoystick;
   }
 

@@ -30,60 +30,50 @@ public class Lift extends Subsystem implements MotherSystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public Lift ()
-  {
+  public Lift () {
     liftMotor.configFactoryDefault();
     liftMotor.setInverted(true);
   }
 
-  public void setSpeed(double percentSpeed)
-  {
+  public void setSpeed(double percentSpeed) {
     liftMotor.set(ControlMode.PercentOutput, percentSpeed);
   }
 
-  public double deadZone(double speed)
-  {
-    if (Math.abs(speed) < .05)
-    {
+  public double deadZone(double speed) {
+    if (Math.abs(speed) < .05) {
       return 0;
     }
-    else
+    else {
       return speed;
+    }
   }
 
-  public double squareSpeed(double speed)
-  {
-    if (speed < 0)
-    {
+  public double squareSpeed(double speed) {
+    if (speed < 0) {
       speed = -(speed * speed);
     }
-    else
-    {
+    else {
       speed = speed * speed;
     }
     return speed;
   }
 
-  public double interpretSpeed(double speed)
-  {
+  public double interpretSpeed(double speed) {
     speed = squareSpeed(speed);
     speed = deadZone(speed);
     return speed;
   }
 
-  public void liftToggleXbox(XboxController joystick)
-  {
+  public void liftToggleXbox(XboxController joystick) {
     double speed = interpretSpeed(-joystick.getRawAxis(1));
     setSpeed(speed);
   }
 
-  public void resetEncoder()
-  {
+  public void resetEncoder() {
     lifterEncoder.reset();
   }
 
-  public double getLifterEncoderDistance()
-  {
+  public double getLifterEncoderDistance() {
     return lifterEncoder.getDistance();
   }
 
@@ -92,7 +82,5 @@ public class Lift extends Subsystem implements MotherSystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
     setDefaultCommand(new LiftCommand());
-
-
   }
 }

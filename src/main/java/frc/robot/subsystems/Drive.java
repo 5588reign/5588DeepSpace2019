@@ -19,9 +19,9 @@ import frc.robot.*;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class Drive extends Subsystem implements MotherSystem{
+public class Drive extends Subsystem implements MotherSystem {
   //distance per pulse = pi * the wheel diameter in inches / pulse per revolution * fudge factor
-  private static final double DISTANCE_PER_PULSE_INCHES = (Math.PI * 5.85) / 265 * 1;
+  private static final double DISTANCE_PER_PULSE_INCHES = (Math.PI * 1.25) / 1024 * 1;
   private final SpeedController leftmotor = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR);
   private final SpeedController rightmotor = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR);
 
@@ -29,7 +29,7 @@ public class Drive extends Subsystem implements MotherSystem{
   private final Encoder rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER_SOURCE_A, RobotMap.RIGHT_ENCODER_SOURCE_B);
 
 
-  public Drive(){
+  public Drive() {
     super();
     leftmotor.setInverted(false);
     rightmotor.setInverted(true);
@@ -39,55 +39,50 @@ public class Drive extends Subsystem implements MotherSystem{
     rightEncoder.setReverseDirection(false);
   } 
 
-  public void resetEncoders(){
+  public void resetEncoders() {
     leftEncoder.reset();
     rightEncoder.reset();
   }
 
-  public double getRightEncoderDistance(){
+  public double getRightEncoderDistance() {
     return rightEncoder.getDistance();
   }
 
-  public double getLeftEncoderDistance(){
+  public double getLeftEncoderDistance() {
     return leftEncoder.getDistance();
   }
   
-  public void setSpeed(double leftSpeed, double rightSpeed){
+  public void setSpeed(double leftSpeed, double rightSpeed) {
     leftmotor.set(leftSpeed);
     rightmotor.set(rightSpeed);
   }
 
-  public void driveJoystick(Joystick joystick){
+  public void driveJoystick(Joystick joystick) { 
     double leftSpeed = interpretSpeed(-joystick.getRawAxis(1)) + interpretSpeed(joystick.getRawAxis(0));
     double rightSpeed = interpretSpeed(-joystick.getRawAxis(1)) - interpretSpeed(joystick.getRawAxis(0));
     setSpeed(leftSpeed, rightSpeed);
   }
 
-  public double deadZone(double speed)
-  {
-    if (Math.abs(speed) < .05)
-    {
+  public double deadZone(double speed) {
+    if (Math.abs(speed) < .05) {
       return 0;
     }
-    else
+    else {
       return speed;
+    }
   }
 
-  public double squareSpeed(double speed)
-  {
-    if (speed < 0)
-    {
+  public double squareSpeed(double speed) {
+    if (speed < 0) {
       speed = -(speed * speed);
     }
-    else
-    {
+    else {
       speed = speed * speed;
     }
     return speed;
   }
 
-  public double interpretSpeed(double speed)
-  {
+  public double interpretSpeed(double speed) {
     speed = squareSpeed(speed);
     speed = deadZone(speed);
     return speed;

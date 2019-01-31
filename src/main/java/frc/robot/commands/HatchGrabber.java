@@ -18,11 +18,11 @@ import frc.robot.RobotMap;
 
 public class HatchGrabber extends Command {
   Compressor c = new Compressor(0);
-  Value value = DoubleSolenoid.Value.kOff;
-  public HatchGrabber(DoubleSolenoid.Value value) {
+  boolean isHatchGrabber;
+  public HatchGrabber(boolean isHatchGrabber) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    this.value = value;
+    this.isHatchGrabber = isHatchGrabber;
   }
 
 
@@ -30,9 +30,22 @@ public class HatchGrabber extends Command {
   @Override
   protected void initialize() {
     c.setClosedLoopControl(true);
-    RobotMap.hatchGrabber.set(value);
-    System.out.println(RobotMap.hatchGrabber.get());
-
+    if (isHatchGrabber) {
+      if (RobotMap.hatchGrabber.get().equals(DoubleSolenoid.Value.kForward)) {
+        RobotMap.hatchGrabber.set(DoubleSolenoid.Value.kReverse);
+      }
+      else if(RobotMap.hatchGrabber.get().equals(DoubleSolenoid.Value.kReverse)) {
+       RobotMap.hatchGrabber.set(DoubleSolenoid.Value.kForward);
+     }
+    }
+    else {
+      if (RobotMap.hatchPusher.get().equals(DoubleSolenoid.Value.kForward)) {
+        RobotMap.hatchPusher.set(DoubleSolenoid.Value.kReverse);
+      }
+      else if(RobotMap.hatchPusher.get().equals(DoubleSolenoid.Value.kReverse)) {
+       RobotMap.hatchPusher.set(DoubleSolenoid.Value.kForward);
+     }
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run

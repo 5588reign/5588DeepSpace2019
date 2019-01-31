@@ -30,26 +30,24 @@ public class LightSensor extends Command {
   @Override
   protected void execute() {
     Robot.i2Csub.readFromLight();
-    if(Robot.i2Csub.backIsReading()==RobotMap.NONE_IS_READING)
-    {
+    if(Robot.i2Csub.backIsReading()==RobotMap.NONE_IS_READING) {
       readValue = Robot.i2Csub.frontOnlyReading();
     }
-    else if(Robot.i2Csub.backIsReading()!=RobotMap.NONE_IS_READING && Robot.i2Csub.frontOnlyReading() != RobotMap.NONE_IS_READING)
-    {
+    else if(Robot.i2Csub.backIsReading()!=RobotMap.NONE_IS_READING && Robot.i2Csub.frontOnlyReading() != RobotMap.NONE_IS_READING) {
       readValue = Robot.i2Csub.backIsReading();
-
-      if (readValue == RobotMap.BACK_MIDDLE_READING)
-      {
+      if (readValue == RobotMap.BACK_MIDDLE_READING) {
         readValue = Robot.i2Csub.frontAndBackReading();
-
       }
     }
-    if(readValue == RobotMap.RIGHT_IS_READING)
+    if(readValue == RobotMap.RIGHT_IS_READING) {
       Robot.drive.setSpeed(.15,.1);
-    if(readValue == RobotMap.LEFT_IS_READING)
+    }
+    if(readValue == RobotMap.LEFT_IS_READING) {
       Robot.drive.setSpeed(.1,.15);
-    if(readValue == RobotMap.FORWARD_IS_READING)
+    }
+    if(readValue == RobotMap.FORWARD_IS_READING) {
       Robot.drive.setSpeed(.1,.1);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

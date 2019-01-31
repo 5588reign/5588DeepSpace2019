@@ -29,6 +29,7 @@ public class RobotMap {
   public static final int LIFTER_ENCODER_SOURCE_B = 5;
 
   public static DoubleSolenoid hatchGrabber = new DoubleSolenoid(1,0);
+  public static DoubleSolenoid hatchPusher = new DoubleSolenoid(2,3);
 
   public static final int RIGHT_IS_READING = 1;
   public static final int FORWARD_IS_READING = 2;

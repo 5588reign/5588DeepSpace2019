@@ -38,8 +38,7 @@ public class I2Csubsystem extends Subsystem {
   }
   */
 
-  public void readFromLight()
-  {
+  public void readFromLight() {
     byte[] sensorsByte = new byte[1];
     
     i2CReaderFront.readOnly(sensorsByte, sensorsByte.length);
@@ -49,44 +48,42 @@ public class I2Csubsystem extends Subsystem {
     backSensors = String.format("%8s", Integer.toBinaryString(sensorsByte[0] & 0xFF)).replace(' ', '0');
        
     //System.out.println(frontSensors);
-
   }
 
   //1=left, 2=straight, 3=right, 0= light is not reading
-  public int frontOnlyReading()
-  {
-    if(frontSensors.charAt(3)=='0')
+  public int frontOnlyReading() {
+    if(frontSensors.charAt(3)=='0') {
       return RobotMap.FORWARD_IS_READING;
+    }
 
-    for (int i = 0; i<7; i++)
-    {
-      if(frontSensors.charAt(i)=='0')
-      {
-        if(i<3)
+    for (int i = 0; i<7; i++) {
+      if(frontSensors.charAt(i)=='0') {
+        if(i<3) {
           return RobotMap.RIGHT_IS_READING;
-        if(i>3)
+        }
+        if(i>3) {
           return RobotMap.LEFT_IS_READING;
+        }
       }
     }
+
     return RobotMap.NONE_IS_READING;
   }
 
-  public int backIsReading()
-  {
-    if(backSensors.charAt(3)=='0')
+  public int backIsReading() {
+    if(backSensors.charAt(3)=='0'){
       return RobotMap.BACK_MIDDLE_READING; //change this to indicate moving on to step three: reading from both front and back
-
-    if(backSensors.contains("0"))
+    }
+    if(backSensors.contains("0")) {
       return RobotMap.FORWARD_IS_READING;
+    }
 
     return RobotMap.NONE_IS_READING;
   }
 
-  public int frontAndBackReading()
-  { 
+  public int frontAndBackReading() { 
     String frontAndBackMiddleSensors = frontSensors.substring(2,5) + backSensors.substring(2,5);
-    switch(frontAndBackMiddleSensors)
-    {
+    switch(frontAndBackMiddleSensors){
       case "001001" : 
         return RobotMap.FORWARD_IS_READING;
       case "100100" : 
@@ -104,12 +101,10 @@ public class I2Csubsystem extends Subsystem {
       default :
         return RobotMap.NONE_IS_READING;
     }
-
   }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     setDefaultCommand(new LightSensor());
   }
-
 }

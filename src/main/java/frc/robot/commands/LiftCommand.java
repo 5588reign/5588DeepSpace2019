@@ -26,7 +26,6 @@ public class LiftCommand extends Command {
   @Override
   protected void execute() {
     Robot.lift.liftToggleXbox(Robot.m_oi.getXboxController());
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
