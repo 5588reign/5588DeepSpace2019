@@ -14,6 +14,7 @@ import frc.robot.RobotMap;
 import frc.robot.commands.LiftCommand;
 import frc.robot.*;
 
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -21,8 +22,9 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
  * Add your docs here.
  */
 public class Lift extends Subsystem implements MotherSystem {
-
+  //distance per pulse = pi * the wheel diameter in inches / pulse per revolution * fudge factor
   private final Encoder lifterEncoder = new Encoder(RobotMap.LIFTER_ENCODER_SOURCE_A, RobotMap.LIFTER_ENCODER_SOURCE_B);
+  private static final double DISTANCE_PER_PULSE_INCHES = (Math.PI * 1.25) / 1024 * 1;
 
   TalonSRX liftMotor = new TalonSRX(0);
   // Put methods for controlling this subsystem
@@ -73,8 +75,18 @@ public class Lift extends Subsystem implements MotherSystem {
   {
     double speed = interpretSpeed(-joystick.getRawAxis(1));
     setSpeed(speed);
-
   }
+
+  public void resetEncoder()
+  {
+    lifterEncoder.reset();
+  }
+
+  public double getLifterEncoderDistance()
+  {
+    return lifterEncoder.getDistance();
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

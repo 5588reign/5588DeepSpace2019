@@ -22,17 +22,23 @@ import frc.robot.commands.EncoderLift;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+  private static final int A_BUTTON_XBOX = 1;
+  private static final int X_BUTTON_XBOX = 3;
+  private static final int Y_BUTTON_XBOX = 4;
+  private static final int LEFT_BUMPER_XBOX = 5;
+  private static final int RIGHT_BUMPER_XBOX = 6;
+  private static final int START_ARROW = 8;
   private final Joystick driverJoystick = new Joystick(0);
   private final XboxController manipulatorJoystick = new XboxController(1);
 
-  Button hatchGrabButton = new JoystickButton(manipulatorJoystick, 5);
-  Button hatchReleaseButton = new JoystickButton(manipulatorJoystick, 6);
+  Button hatchGrabButton = new JoystickButton(manipulatorJoystick, LEFT_BUMPER_XBOX);
+  Button hatchReleaseButton = new JoystickButton(manipulatorJoystick, RIGHT_BUMPER_XBOX);
 
-  Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, 8);
+  Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, START_ARROW);
 
-  Button firstLevelLift = new JoystickButton(manipulatorJoystick, 1);
-  Button secondLevelLift = new JoystickButton(manipulatorJoystick, 3);
-  Button thirdLevelLift = new JoystickButton(manipulatorJoystick, 4);
+  Button firstLevelLift = new JoystickButton(manipulatorJoystick, A_BUTTON_XBOX);
+  Button secondLevelLift = new JoystickButton(manipulatorJoystick, X_BUTTON_XBOX);
+  Button thirdLevelLift = new JoystickButton(manipulatorJoystick, Y_BUTTON_XBOX);
  
 
 
