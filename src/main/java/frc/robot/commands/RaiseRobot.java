@@ -7,29 +7,19 @@
 
 package frc.robot.commands;
 
-
 import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-
-public class HatchGrabber extends Command {
-  Compressor c = new Compressor(0);
-  boolean isHatchGrabber;
-  public HatchGrabber(boolean isHatchGrabber) {
+public class RaiseRobot extends Command {
+  public RaiseRobot() {
+  
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    this.isHatchGrabber = isHatchGrabber;
   }
-
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-  
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -40,13 +30,12 @@ public class HatchGrabber extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //RobotMap.hatchGrabber.set(DoubleSolenoid.Value.kOff);
   }
 
   // Called when another command which requires one or more of the same

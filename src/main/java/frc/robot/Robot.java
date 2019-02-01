@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static UsbCamera camera1;
   public static UsbCamera camera2;
+  public static UsbCamera camera3;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   
@@ -55,10 +56,12 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
    
-    camera1 = CameraServer.getInstance().startAutomaticCapture("camera low", 0);
+    camera1 = CameraServer.getInstance().startAutomaticCapture("camera front", 0);
     camera1.setBrightness(1); 
-    camera2 = CameraServer.getInstance().startAutomaticCapture("camera high", 1);
+    camera2 = CameraServer.getInstance().startAutomaticCapture("camera back", 1);
     camera2.setBrightness(1);
+    camera3 = CameraServer.getInstance().startAutomaticCapture("camera floor", 2);
+    camera3.setBrightness(1);
 
   }
 
