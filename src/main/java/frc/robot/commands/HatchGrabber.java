@@ -8,19 +8,13 @@
 package frc.robot.commands;
 
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 
 
 public class HatchGrabber extends Command {
-  Compressor c = new Compressor(0);
   boolean isHatchGrabber;
-  private final DoubleSolenoid hatchGrabber = new DoubleSolenoid(1,0);
-  private final DoubleSolenoid hatchPusher = new DoubleSolenoid(2,3);
   public HatchGrabber(boolean isHatchGrabber) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -33,10 +27,10 @@ public class HatchGrabber extends Command {
   @Override
   protected void initialize() {
     if(isHatchGrabber){
-      Robot.pneumatics.changeValueSelectPneumatic(hatchGrabber);
+      Robot.pneumatics.changeValueSelectPneumatic(Robot.pneumatics.hatchGrabber);
     }
     else{
-      Robot.pneumatics.changeValueSelectPneumatic(hatchPusher);
+      Robot.pneumatics.changeValueSelectPneumatic(Robot.pneumatics.hatchPusher);
     }
   }
 

@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static UsbCamera camera1;
   public static UsbCamera camera2;
-  public static UsbCamera camera3;
+  //public static UsbCamera camera3;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   
@@ -62,8 +62,8 @@ public class Robot extends TimedRobot {
     camera1.setBrightness(1); 
     camera2 = CameraServer.getInstance().startAutomaticCapture("camera back", 1);
     camera2.setBrightness(1);
-    camera3 = CameraServer.getInstance().startAutomaticCapture("camera floor", 2);
-    camera3.setBrightness(1);
+    //camera3 = CameraServer.getInstance().startAutomaticCapture("camera floor", 2);
+    //camera3.setBrightness(1);
 
   }
 

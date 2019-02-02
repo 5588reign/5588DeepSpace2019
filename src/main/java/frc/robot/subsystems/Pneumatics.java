@@ -17,10 +17,10 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class Pneumatics extends Subsystem {
-  private final DoubleSolenoid hatchGrabber = new DoubleSolenoid(1,0);
-  private final DoubleSolenoid hatchPusher = new DoubleSolenoid(2,3);
-  private final DoubleSolenoid FrontRobotRaise = new DoubleSolenoid(4, 5);
-  private final DoubleSolenoid BackRobotRaise = new DoubleSolenoid(6, 7);
+  public final DoubleSolenoid hatchGrabber = new DoubleSolenoid(1,0);
+  public final DoubleSolenoid hatchPusher = new DoubleSolenoid(2,3);
+  public final DoubleSolenoid FrontRobotRaise = new DoubleSolenoid(4, 5);
+  public final DoubleSolenoid BackRobotRaise = new DoubleSolenoid(6, 7);
   
   private final Compressor c = new Compressor(0); 
 
@@ -29,6 +29,8 @@ public class Pneumatics extends Subsystem {
 
   public Pneumatics(){
     c.setClosedLoopControl(true);
+    hatchGrabber.set(DoubleSolenoid.Value.kReverse);
+    System.out.println(hatchGrabber.get());
   }
 
 
