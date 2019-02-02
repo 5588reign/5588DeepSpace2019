@@ -46,6 +46,5 @@ public class Pneumatics extends Subsystem {
     else if(selectedPneumatic.get().equals(DoubleSolenoid.Value.kReverse)){
       selectedPneumatic.set(DoubleSolenoid.Value.kForward);
     }
-    
   }
 }

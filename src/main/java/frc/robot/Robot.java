@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.I2Csubsystem;
 import frc.robot.subsystems.Lift;
+import frc.robot.subsystems.Pneumatics;
 
 
 
@@ -29,6 +30,7 @@ import frc.robot.subsystems.Lift;
  */
 public class Robot extends TimedRobot {
   public static Drive drive = new Drive();
+  public static Pneumatics pneumatics = new Pneumatics();  
   public static I2Csubsystem i2Csub = new I2Csubsystem();
   public static Lift lift = new Lift();
   public static OI m_oi;
