@@ -7,30 +7,27 @@
 
 package frc.robot.commands;
 
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.ClimbingPneumatics;
 
-
-
-public class HatchGrabber extends Command {
-  boolean isHatchGrabber;
-  public HatchGrabber(boolean isHatchGrabber) {
+public class LowerRobot extends Command {
+  boolean isFrontPneumatic;
+  public LowerRobot(boolean isFrontPneumatic) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.hatchPneumatics); 
-    this.isHatchGrabber = isHatchGrabber;
+    requires(Robot.climbingPneumatics);
+    this.isFrontPneumatic = isFrontPneumatic;
   }
-
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    if(isHatchGrabber){
-      Robot.hatchPneumatics.changeValueSelectedPneumatic(Robot.hatchPneumatics.hatchGrabber);
+    if(isFrontPneumatic){
+      Robot.climbingPneumatics.setFrontToReverse();
     }
     else{
-      Robot.hatchPneumatics.changeValueSelectedPneumatic(Robot.hatchPneumatics.hatchPusher);
+      Robot.climbingPneumatics.setBackToReverse();
     }
   }
 
@@ -48,7 +45,6 @@ public class HatchGrabber extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //RobotMap.hatchGrabber.set(DoubleSolenoid.Value.kOff);
   }
 
   // Called when another command which requires one or more of the same

@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import frc.robot.commands.HatchGrabber;
 import frc.robot.commands.LightSensor;
 import frc.robot.commands.EncoderLift;
+import frc.robot.commands.RaiseRobot;
+import frc.robot.commands.LowerRobot;
 
 
 /**
@@ -28,25 +30,36 @@ public class OI {
   private static final int LEFT_BUMPER_XBOX = 5;
   private static final int RIGHT_BUMPER_XBOX = 6;
   private static final int START_ARROW = 8;
+  private static final int BUTTON_6_JOYSTICK = 6;
+  private static final int BUTTON_7_JOYSTICK = 7;
+  private static final int BUTTON_11_JOYSTICK = 11;
   private final Joystick driverJoystick = new Joystick(0);
   private final XboxController manipulatorJoystick = new XboxController(1);
 
   Button hatchGrabberButton = new JoystickButton(manipulatorJoystick, RIGHT_BUMPER_XBOX);
-
+  Button hatchPusherButton = new JoystickButton(manipulatorJoystick, LEFT_BUMPER_XBOX);
   Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, START_ARROW);
 
   Button firstLevelLift = new JoystickButton(manipulatorJoystick, A_BUTTON_XBOX);
   Button secondLevelLift = new JoystickButton(manipulatorJoystick, X_BUTTON_XBOX);
   Button thirdLevelLift = new JoystickButton(manipulatorJoystick, Y_BUTTON_XBOX);
+
+  Button raiseBothPneumatics = new JoystickButton(manipulatorJoystick, BUTTON_6_JOYSTICK);
+  Button lowerFrontPneumatic = new JoystickButton(manipulatorJoystick, BUTTON_7_JOYSTICK);
+  Button lowerBackPneumatic = new JoystickButton(manipulatorJoystick, BUTTON_11_JOYSTICK);
  
 
 
   public OI() {
     hatchGrabberButton.whenPressed(new HatchGrabber(true));
+    hatchPusherButton.whenPressed(new HatchGrabber(false));
     lightAlignmentButton.whileHeld(new LightSensor());
     firstLevelLift.whenPressed(new EncoderLift(0.3,0));
     secondLevelLift.whenPressed(new EncoderLift(0.3,40));
     thirdLevelLift.whenPressed(new EncoderLift(0.3,60));
+    lowerFrontPneumatic.whenPressed(new LowerRobot(true));
+    lowerBackPneumatic.whenPressed(new LowerRobot(false));
+    raiseBothPneumatics.whenPressed(new RaiseRobot());
   }
 
   public Joystick getDriverJoystick() {

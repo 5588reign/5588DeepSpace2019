@@ -9,40 +9,28 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
  */
-public class Pneumatics extends Subsystem {
+public class HatchPneumatics extends Subsystem {
   public final DoubleSolenoid hatchGrabber = new DoubleSolenoid(1,0);
   public final DoubleSolenoid hatchPusher = new DoubleSolenoid(2,3);
-  public final DoubleSolenoid FrontRobotRaise = new DoubleSolenoid(4, 5);
-  public final DoubleSolenoid BackRobotRaise = new DoubleSolenoid(6, 7);
+  
   
   private final Compressor c = new Compressor(0); 
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public Pneumatics(){
+  public HatchPneumatics(){
     c.setClosedLoopControl(true);
     hatchGrabber.set(DoubleSolenoid.Value.kReverse);
-    hatchPusher.set(DoubleSolenoid.Value.kReverse);
-    FrontRobotRaise.set(DoubleSolenoid.Value.kReverse);
-    BackRobotRaise.set(DoubleSolenoid.Value.kReverse);
+    hatchPusher.set(DoubleSolenoid.Value.kReverse); 
   }
 
-
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-  }
-
-  public void changeValueSelectPneumatic(DoubleSolenoid selectedPneumatic) {
+  public void changeValueSelectedPneumatic(DoubleSolenoid selectedPneumatic) {
     if(selectedPneumatic.get().equals(DoubleSolenoid.Value.kForward)) {
       selectedPneumatic.set(DoubleSolenoid.Value.kReverse);
     }
@@ -50,5 +38,11 @@ public class Pneumatics extends Subsystem {
     else if(selectedPneumatic.get().equals(DoubleSolenoid.Value.kReverse)){
       selectedPneumatic.set(DoubleSolenoid.Value.kForward);
     }
+  }
+
+  @Override
+  public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
   }
 }

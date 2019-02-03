@@ -7,19 +7,22 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
+import frc.robot.subsystems.ClimbingPneumatics;
 
 public class RaiseRobot extends Command {
   public RaiseRobot() {
   
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.climbingPneumatics);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.climbingPneumatics.setToForward();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -30,7 +33,7 @@ public class RaiseRobot extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
