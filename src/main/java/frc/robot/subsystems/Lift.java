@@ -33,10 +33,20 @@ public class Lift extends Subsystem implements MotherSystem {
   public Lift () {
     liftMotor.configFactoryDefault();
     liftMotor.setInverted(true);
+    lifterEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
   }
 
   public void setSpeed(double percentSpeed) {
     liftMotor.set(ControlMode.PercentOutput, percentSpeed);
+  }
+
+  public void setSpeedWithDirection(double percentSpeed, double distance){
+    if(distance > this.getLifterEncoderDistance()){
+      this.setSpeed(percentSpeed);
+    }
+    else if(distance < this.getLifterEncoderDistance()){
+      this.setSpeed(-percentSpeed);
+    }
   }
 
   public double deadZone(double speed) {

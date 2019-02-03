@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import frc.robot.commands.HatchGrabber;
 import frc.robot.commands.LightSensor;
 import frc.robot.commands.EncoderLift;
