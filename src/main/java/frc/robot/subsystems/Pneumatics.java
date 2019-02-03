@@ -30,7 +30,9 @@ public class Pneumatics extends Subsystem {
   public Pneumatics(){
     c.setClosedLoopControl(true);
     hatchGrabber.set(DoubleSolenoid.Value.kReverse);
-    System.out.println(hatchGrabber.get());
+    hatchPusher.set(DoubleSolenoid.Value.kReverse);
+    FrontRobotRaise.set(DoubleSolenoid.Value.kReverse);
+    BackRobotRaise.set(DoubleSolenoid.Value.kReverse);
   }
 
 
