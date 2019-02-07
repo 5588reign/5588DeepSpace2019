@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.HatchGrabber;
 import frc.robot.commands.LightSensor;
 import frc.robot.commands.EncoderLift;
+import frc.robot.commands.GyroscopeTurn;
 import frc.robot.commands.RaiseRobot;
 import frc.robot.commands.LowerRobot;
 
@@ -32,6 +33,7 @@ public class OI {
   private static final int BUTTON_6_JOYSTICK = 6;
   private static final int BUTTON_7_JOYSTICK = 7;
   private static final int BUTTON_11_JOYSTICK = 11;
+  private static final int BUTTON_2_JOYSTICK = 2;
   private final Joystick driverJoystick = new Joystick(0);
   private final XboxController manipulatorJoystick = new XboxController(1);
 
@@ -43,9 +45,11 @@ public class OI {
   Button secondLevelLift = new JoystickButton(manipulatorJoystick, X_BUTTON_XBOX);
   Button thirdLevelLift = new JoystickButton(manipulatorJoystick, Y_BUTTON_XBOX);
 
-  Button raiseBothPneumatics = new JoystickButton(manipulatorJoystick, BUTTON_6_JOYSTICK);
-  Button lowerFrontPneumatic = new JoystickButton(manipulatorJoystick, BUTTON_7_JOYSTICK);
-  Button lowerBackPneumatic = new JoystickButton(manipulatorJoystick, BUTTON_11_JOYSTICK);
+  Button raiseBothPneumatics = new JoystickButton(driverJoystick, BUTTON_6_JOYSTICK);
+  Button lowerFrontPneumatic = new JoystickButton(driverJoystick, BUTTON_7_JOYSTICK);
+  Button lowerBackPneumatic = new JoystickButton(driverJoystick, BUTTON_11_JOYSTICK);
+
+  Button turnWithGyroButton = new JoystickButton(driverJoystick, BUTTON_2_JOYSTICK);
  
 
 
@@ -59,6 +63,7 @@ public class OI {
     lowerFrontPneumatic.whenPressed(new LowerRobot(true));
     lowerBackPneumatic.whenPressed(new LowerRobot(false));
     raiseBothPneumatics.whenPressed(new RaiseRobot());
+    turnWithGyroButton.whenPressed(new GyroscopeTurn(10));
   }
 
   public Joystick getDriverJoystick() {
