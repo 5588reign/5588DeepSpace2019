@@ -14,9 +14,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Add your docs here.
  */
 public class Gyroscope extends Subsystem {
-  ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+  private final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+ 
+  public Gyroscope() {
+    
+  }
+
   public void calibrate() {
     gyro.calibrate();
   }
@@ -27,8 +32,11 @@ public class Gyroscope extends Subsystem {
 
 	public void reset() {
 		gyro.reset();
-	}
-
+  }
+  
+  public double getRate() {
+    return gyro.getRate();
+  }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

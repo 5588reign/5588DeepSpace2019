@@ -8,12 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class GyroscopeTurn extends Command {
   private double degreesTurned = 0;
-  private double degreesToTravel;
+  private double degreesToTravel = 0;
   private boolean isTurningRight;
 
   public GyroscopeTurn(double degreesToTravel) {
@@ -27,6 +26,7 @@ public class GyroscopeTurn extends Command {
       isTurningRight = false;
     }
     requires(Robot.gyroscope);
+    requires(Robot.drive);
   }
 
   // Called just before this Command runs the first time
@@ -35,7 +35,7 @@ public class GyroscopeTurn extends Command {
     Robot.gyroscope.reset();
   }
 
-  // Called repeatedly when this Command is scheduled to run
+  // Called repeatedly when this Command is sched tuled to run
   @Override
   protected void execute() {
     degreesTurned = Robot.gyroscope.getAngle();
@@ -46,6 +46,7 @@ public class GyroscopeTurn extends Command {
       Robot.drive.setSpeed(-.2, .2);
     }
     System.out.println(degreesTurned);
+    System.out.println("Rate: " + Robot.gyroscope.getRate());
   }
 
   // Make this return true when this Command no longer needs to run execute()
