@@ -16,6 +16,7 @@ import frc.robot.commands.LightSensor;
 import frc.robot.commands.EncoderLift;
 import frc.robot.commands.GyroscopeTurn;
 import frc.robot.commands.RaiseRobot;
+import frc.robot.commands.TurnWhilePress;
 import frc.robot.commands.LowerRobot;
 
 
@@ -25,6 +26,7 @@ import frc.robot.commands.LowerRobot;
  */
 public class OI {
   private static final int A_BUTTON_XBOX = 1;
+  private static final int B_BUTTON_XBOX = 2;
   private static final int X_BUTTON_XBOX = 3;
   private static final int Y_BUTTON_XBOX = 4;
   private static final int LEFT_BUMPER_XBOX = 5;
@@ -37,19 +39,22 @@ public class OI {
   private final Joystick driverJoystick = new Joystick(0);
   private final XboxController manipulatorJoystick = new XboxController(1);
 
-  Button hatchGrabberButton = new JoystickButton(manipulatorJoystick, RIGHT_BUMPER_XBOX);
-  Button hatchPusherButton = new JoystickButton(manipulatorJoystick, LEFT_BUMPER_XBOX);
+  Button hatchGrabberButton = new JoystickButton(manipulatorJoystick, B_BUTTON_XBOX);
+  Button hatchPusherButton = new JoystickButton(manipulatorJoystick, A_BUTTON_XBOX);
   Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, START_ARROW);
 
-  Button firstLevelLift = new JoystickButton(manipulatorJoystick, A_BUTTON_XBOX);
-  Button secondLevelLift = new JoystickButton(manipulatorJoystick, X_BUTTON_XBOX);
-  Button thirdLevelLift = new JoystickButton(manipulatorJoystick, Y_BUTTON_XBOX);
+  Button turnRightButton = new JoystickButton(manipulatorJoystick, Y_BUTTON_XBOX);
+  Button turnLeftButton = new JoystickButton(manipulatorJoystick, X_BUTTON_XBOX);
 
-  Button raiseBothPneumatics = new JoystickButton(driverJoystick, BUTTON_6_JOYSTICK);
-  Button lowerFrontPneumatic = new JoystickButton(driverJoystick, BUTTON_7_JOYSTICK);
-  Button lowerBackPneumatic = new JoystickButton(driverJoystick, BUTTON_11_JOYSTICK);
+  //Button firstLevelLift = new JoystickButton(manipulatorJoystick, A_BUTTON_XBOX);
+  //Button secondLevelLift = new JoystickButton(manipulatorJoystick, X_BUTTON_XBOX);
+  //Button thirdLevelLift = new JoystickButton(manipulatorJoystick, Y_BUTTON_XBOX);
 
-  Button turnWithGyroButton = new JoystickButton(driverJoystick, BUTTON_2_JOYSTICK);
+  Button extendBothPneumatics = new JoystickButton(driverJoystick, BUTTON_6_JOYSTICK);
+  Button retractFrontPneumatic = new JoystickButton(driverJoystick, BUTTON_7_JOYSTICK);
+  Button retractBackPneumatic = new JoystickButton(driverJoystick, BUTTON_11_JOYSTICK);
+
+  //Button turnWithGyroButton = new JoystickButton(driverJoystick, BUTTON_2_JOYSTICK);
  
 
 
@@ -57,13 +62,16 @@ public class OI {
     hatchGrabberButton.whenPressed(new HatchGrabber(true));
     hatchPusherButton.whenPressed(new HatchGrabber(false));
     lightAlignmentButton.whileHeld(new LightSensor());
-    firstLevelLift.whenPressed(new EncoderLift(0.3,0));
-    secondLevelLift.whenPressed(new EncoderLift(0.3,40));
-    thirdLevelLift.whenPressed(new EncoderLift(0.3,60));
-    lowerFrontPneumatic.whenPressed(new LowerRobot(true));
-    lowerBackPneumatic.whenPressed(new LowerRobot(false));
-    raiseBothPneumatics.whenPressed(new RaiseRobot());
-    turnWithGyroButton.whenPressed(new GyroscopeTurn(10));
+    //firstLevelLift.whenPressed(new EncoderLift(0.3,0));
+    //secondLevelLift.whenPressed(new EncoderLift(0.3,40));
+    //thirdLevelLift.whenPressed(new EncoderLift(0.3,60));
+    retractFrontPneumatic.whenPressed(new LowerRobot(true));
+    retractBackPneumatic.whenPressed(new LowerRobot(false));
+    extendBothPneumatics.whenPressed(new RaiseRobot());
+
+    turnRightButton.whileHeld(new TurnWhilePress(0.2, -0.2, 0.2));
+    turnLeftButton.whileHeld(new TurnWhilePress(-0.2, 0.2, 0.2));
+    //turnWithGyroButton.whenPressed(new GyroscopeTurn(10));
   }
 
   public Joystick getDriverJoystick() {
