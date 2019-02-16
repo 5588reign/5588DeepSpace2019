@@ -9,37 +9,40 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.*;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- * Add your docs here.
- */
+
 public class Gyroscope extends Subsystem {
   private final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
- 
-  public Gyroscope() {
-    
-  }
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
 
-  public void calibrate() {
-    gyro.calibrate();
-  }
+	public void calibrate(){
+		gyro.calibrate();
+	}
 
-	public double getAngle() {
+	public double getAngle()
+	{
 		return gyro.getAngle();
+	}
+
+	public void reset()
+	{
+		gyro.reset();
+	}
+  
+  public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
   }
 
-	public void reset() {
-		gyro.reset();
-  }
-  
-  public double getRate() {
-    return gyro.getRate();
-  }
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-  }
+    //private static Gyroscope instance = new Gyroscope();
+
+   // public static Gyroscope getInstance() {
+    	//return instance;
+   // }
+
 }
+
+

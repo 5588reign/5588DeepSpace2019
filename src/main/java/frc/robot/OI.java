@@ -18,6 +18,8 @@ import frc.robot.commands.GyroscopeTurn;
 import frc.robot.commands.RaiseRobot;
 import frc.robot.commands.TurnWhilePress;
 import frc.robot.commands.LowerRobot;
+import frc.robot.commands.SwitchCameras;
+
 
 
 /**
@@ -32,10 +34,12 @@ public class OI {
   private static final int LEFT_BUMPER_XBOX = 5;
   private static final int RIGHT_BUMPER_XBOX = 6;
   private static final int START_ARROW = 8;
+  private static final int BUTTON_1_JOYSTICK = 1;
   private static final int BUTTON_6_JOYSTICK = 6;
   private static final int BUTTON_7_JOYSTICK = 7;
   private static final int BUTTON_11_JOYSTICK = 11;
   private static final int BUTTON_2_JOYSTICK = 2;
+  private static final int BUTTON_8_JOYSTICK = 8;
   private final Joystick driverJoystick = new Joystick(0);
   private final XboxController manipulatorJoystick = new XboxController(1);
 
@@ -54,8 +58,7 @@ public class OI {
   Button retractFrontPneumatic = new JoystickButton(driverJoystick, BUTTON_7_JOYSTICK);
   Button retractBackPneumatic = new JoystickButton(driverJoystick, BUTTON_11_JOYSTICK);
 
-  //Button turnWithGyroButton = new JoystickButton(driverJoystick, BUTTON_2_JOYSTICK);
- 
+  Button switchCameras = new JoystickButton(driverJoystick, BUTTON_1_JOYSTICK);
 
 
   public OI() {
@@ -69,9 +72,10 @@ public class OI {
     retractBackPneumatic.whenPressed(new LowerRobot(false));
     extendBothPneumatics.whenPressed(new RaiseRobot());
 
-    turnRightButton.whileHeld(new TurnWhilePress(0.2, -0.2, 0.2));
-    turnLeftButton.whileHeld(new TurnWhilePress(-0.2, 0.2, 0.2));
-    //turnWithGyroButton.whenPressed(new GyroscopeTurn(10));
+    turnRightButton.whenPressed(new GyroscopeTurn(5));
+    turnLeftButton.whenPressed(new GyroscopeTurn(-5));
+
+    switchCameras.whenPressed(new SwitchCameras());
   }
 
   public Joystick getDriverJoystick() {

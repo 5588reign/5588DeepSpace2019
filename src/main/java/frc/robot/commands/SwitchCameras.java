@@ -8,58 +8,40 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.Robot;
 
-public class GyroscopeTurn extends Command {
-  private double degreesTurned = 0;
-  private double degreesToTravel = 0;
-  private boolean isTurningRight;
-
-  public GyroscopeTurn(double degreesToTravel) {
+public class SwitchCameras extends Command {
+  String cameraToSwitchTo = "";
+  public SwitchCameras() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    this.degreesToTravel = degreesToTravel;
-    if (degreesToTravel > 0) {
-      isTurningRight = true;
-    }
-    else {
-      isTurningRight = false;
-    }
-    requires(Robot.gyroscope);
-    requires(Robot.drive);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.gyroscope.reset();
   }
 
-  // Called repeatedly when this Command is sched tuled to run
+  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    degreesTurned = Robot.gyroscope.getAngle();
-    if (isTurningRight) {
-      Robot.drive.setSpeed(.2, -.2);
+    if(Robot.switchingCameras){
+      //front
+      cameraToSwitchTo = Robot.camera1.getName();
     }
     else {
-      Robot.drive.setSpeed(-.2, .2);
+      //floor
+      cameraToSwitchTo = Robot.camera3.getName();
     }
-    System.out.println(degreesTurned);
+    NetworkTableInstance.getDefault().getTable("").getEntry(cameraToSwitchTo);
+    //PutString("camera selection", cameraToSwitchTo);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if (isTurningRight && degreesTurned >= degreesToTravel) {
-      return true;
-    } 
-    else if (!isTurningRight && degreesTurned <= degreesToTravel) {
-      return true;
-    }
-    else {
-      return false;
-    }
+    return true;
   }
 
   // Called once after isFinished returns true
