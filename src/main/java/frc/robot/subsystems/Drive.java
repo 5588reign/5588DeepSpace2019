@@ -45,8 +45,8 @@ public class Drive extends Subsystem implements MotherSystem {
 
     frontLeftMotor.setInverted(false);
     backLeftMotor.setInverted(false);
-    frontRightMotor.setInverted(false);
-    backRightMotor.setInverted(false);
+    frontRightMotor.setInverted(true);
+    backRightMotor.setInverted(true);
 
     backLeftMotor.follow(frontLeftMotor);
     backRightMotor.follow(frontRightMotor);

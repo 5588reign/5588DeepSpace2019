@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
   public static UsbCamera camera1;
   public static UsbCamera camera2;
   public static UsbCamera camera3;
+  public static MjpegServer cameraswitch;
   public static Boolean switchingCameras = true;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -70,6 +72,8 @@ public class Robot extends TimedRobot {
     camera3 = CameraServer.getInstance().startAutomaticCapture("camera floor", 2);
     camera3.setBrightness(1);
 
+    cameraswitch = CameraServer.getInstance().addSwitchedCamera("camera Switch");
+    cameraswitch.setSource(camera1);
   }
 
   /**

@@ -18,7 +18,7 @@ import frc.robot.commands.GyroscopeTurn;
 import frc.robot.commands.RaiseRobot;
 import frc.robot.commands.TurnWhilePress;
 import frc.robot.commands.LowerRobot;
-import frc.robot.commands.SwitchCameras;
+import frc.robot.commands.SwitchCamera;
 
 
 
@@ -58,7 +58,7 @@ public class OI {
   Button retractFrontPneumatic = new JoystickButton(driverJoystick, BUTTON_7_JOYSTICK);
   Button retractBackPneumatic = new JoystickButton(driverJoystick, BUTTON_11_JOYSTICK);
 
-  Button switchCameras = new JoystickButton(driverJoystick, BUTTON_1_JOYSTICK);
+  Button switchCamera = new JoystickButton(driverJoystick, BUTTON_1_JOYSTICK);
 
 
   public OI() {
@@ -75,7 +75,7 @@ public class OI {
     turnRightButton.whenPressed(new GyroscopeTurn(5));
     turnLeftButton.whenPressed(new GyroscopeTurn(-5));
 
-    switchCameras.whenPressed(new SwitchCameras());
+    switchCamera.whenPressed(new SwitchCamera());
   }
 
   public Joystick getDriverJoystick() {

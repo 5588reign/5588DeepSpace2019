@@ -8,12 +8,10 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.Robot;
 
-public class SwitchCameras extends Command {
-  String cameraToSwitchTo = "";
-  public SwitchCameras() {
+public class SwitchCamera extends Command {
+  public SwitchCamera() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -21,21 +19,17 @@ public class SwitchCameras extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    if (Robot.cameraswitch.getSource() == Robot.camera2) {
+      Robot.cameraswitch.setSource(Robot.camera3);
+    }
+    else {
+      Robot.cameraswitch.setSource(Robot.camera2);
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.switchingCameras){
-      //front
-      cameraToSwitchTo = Robot.camera1.getName();
-    }
-    else {
-      //floor
-      cameraToSwitchTo = Robot.camera3.getName();
-    }
-    NetworkTableInstance.getDefault().getTable("").getEntry(cameraToSwitchTo);
-    //PutString("camera selection", cameraToSwitchTo);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -47,13 +41,6 @@ public class SwitchCameras extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.switchingCameras = false;
-    if (Robot.switchingCameras) {
-      Robot.switchingCameras = false;
-    }
-    else {
-      Robot.switchingCameras = true;
-    }
   }
 
   // Called when another command which requires one or more of the same
