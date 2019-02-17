@@ -47,6 +47,13 @@ public class SwitchCameras extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.switchingCameras = false;
+    if (Robot.switchingCameras) {
+      Robot.switchingCameras = false;
+    }
+    else {
+      Robot.switchingCameras = true;
+    }
   }
 
   // Called when another command which requires one or more of the same

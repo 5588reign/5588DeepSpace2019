@@ -7,6 +7,9 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -21,9 +24,12 @@ import frc.robot.*;
  */
 public class Drive extends Subsystem implements MotherSystem {
   //distance per pulse = pi * the wheel diameter in inches / pulse per revolution * fudge factor
-  private static final double DISTANCE_PER_PULSE_INCHES = (Math.PI * 1.25) / 1024 * 1;
-  private final SpeedController leftmotor = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR);
-  private final SpeedController rightmotor = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR);
+  private static final double DISTANCE_PER_PULSE_INCHES = (Math.PI * 1.25) / 256 * 1;
+
+  private VictorSPX frontLeftMotor = new VictorSPX(12);
+  private VictorSPX backLeftMotor = new VictorSPX(13);
+  private VictorSPX frontRightMotor = new VictorSPX(14);
+  private VictorSPX backRightMotor = new VictorSPX(15);
 
   private final Encoder leftEncoder = new Encoder(RobotMap.LEFT_ENCODER_SOURCE_A, RobotMap.LEFT_ENCODER_SOURCE_B);
   private final Encoder rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER_SOURCE_A, RobotMap.RIGHT_ENCODER_SOURCE_B);
@@ -31,8 +37,20 @@ public class Drive extends Subsystem implements MotherSystem {
 
   public Drive() {
     super();
-    leftmotor.setInverted(false);
-    rightmotor.setInverted(true);
+
+    frontLeftMotor.configFactoryDefault();
+    frontRightMotor.configFactoryDefault();
+    backLeftMotor.configFactoryDefault();
+    backRightMotor.configFactoryDefault();
+
+    frontLeftMotor.setInverted(false);
+    backLeftMotor.setInverted(false);
+    frontRightMotor.setInverted(false);
+    backRightMotor.setInverted(false);
+
+    backLeftMotor.follow(frontLeftMotor);
+    backRightMotor.follow(frontRightMotor);
+
     rightEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
     leftEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
     leftEncoder.setReverseDirection(true);
@@ -53,8 +71,8 @@ public class Drive extends Subsystem implements MotherSystem {
   }
   
   public void setSpeed(double leftSpeed, double rightSpeed) {
-    leftmotor.set(leftSpeed);
-    rightmotor.set(rightSpeed);
+    frontLeftMotor.set(ControlMode.PercentOutput, leftSpeed);
+    frontRightMotor.set(ControlMode.PercentOutput, rightSpeed);
   }
 
   public void driveJoystick(Joystick joystick) { 
@@ -89,8 +107,8 @@ public class Drive extends Subsystem implements MotherSystem {
   }
 
   public void stop(){
-    leftmotor.stopMotor();
-    rightmotor.stopMotor();
+    frontLeftMotor.set(ControlMode.PercentOutput, 0);
+    frontRightMotor.set(ControlMode.PercentOutput, 0);
   }
   // Put methods for controlling this subsystem
   // here. Call these from Commands.

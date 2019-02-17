@@ -14,8 +14,11 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-  public static final int LEFT_DRIVE_MOTOR = 2;
-  public static final int RIGHT_DRIVE_MOTOR = 0;
+
+  public static final int FRONT_LEFT_MOTOR = 12;
+  public static final int BACK_LEFT_MOTOR = 13;
+  public static final int FRONT_RIGHT_MOTOR = 14;
+  public static final int BACK_RIGHT_MOTOR = 15;
 
   public static final int LEFT_ENCODER_SOURCE_A = 0;
   public static final int LEFT_ENCODER_SOURCE_B = 1;
