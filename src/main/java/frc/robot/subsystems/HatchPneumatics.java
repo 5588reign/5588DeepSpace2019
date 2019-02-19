@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Add your docs here.
  */
 public class HatchPneumatics extends Subsystem {
-  public final DoubleSolenoid hatchGrabber = new DoubleSolenoid(1,0);
+  public final DoubleSolenoid hatchGrabber = new DoubleSolenoid(0,1);
   public final DoubleSolenoid hatchPusher = new DoubleSolenoid(2,3);
   
   

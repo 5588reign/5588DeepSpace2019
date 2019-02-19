@@ -32,7 +32,7 @@ public class Lift extends Subsystem implements MotherSystem {
 
   public Lift () {
     liftMotor.configFactoryDefault();
-    liftMotor.setInverted(true);
+    liftMotor.setInverted(false);
     lifterEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
   }
 

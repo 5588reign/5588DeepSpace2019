@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
     camera3.setBrightness(1);
 
     cameraswitch = CameraServer.getInstance().addSwitchedCamera("camera Switch");
-    cameraswitch.setSource(camera1);
+    cameraswitch.setSource(camera2);
   }
 
   /**

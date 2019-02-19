@@ -19,7 +19,7 @@ import frc.robot.commands.RaiseRobot;
 import frc.robot.commands.TurnWhilePress;
 import frc.robot.commands.LowerRobot;
 import frc.robot.commands.SwitchCamera;
-
+import frc.robot.commands.EncoderDrive;;
 
 
 /**
@@ -38,8 +38,8 @@ public class OI {
   private static final int BUTTON_6_JOYSTICK = 6;
   private static final int BUTTON_7_JOYSTICK = 7;
   private static final int BUTTON_11_JOYSTICK = 11;
-  private static final int BUTTON_2_JOYSTICK = 2;
-  private static final int BUTTON_8_JOYSTICK = 8;
+  private static final int BUTTON_12_JOYSTICK = 12;
+
   private final Joystick driverJoystick = new Joystick(0);
   private final XboxController manipulatorJoystick = new XboxController(1);
 
@@ -57,6 +57,8 @@ public class OI {
   Button extendBothPneumatics = new JoystickButton(driverJoystick, BUTTON_6_JOYSTICK);
   Button retractFrontPneumatic = new JoystickButton(driverJoystick, BUTTON_7_JOYSTICK);
   Button retractBackPneumatic = new JoystickButton(driverJoystick, BUTTON_11_JOYSTICK);
+  
+  Button testEncoders = new JoystickButton(driverJoystick, BUTTON_12_JOYSTICK);
 
   Button switchCamera = new JoystickButton(driverJoystick, BUTTON_1_JOYSTICK);
 
@@ -76,6 +78,8 @@ public class OI {
     turnLeftButton.whenPressed(new GyroscopeTurn(-5));
 
     switchCamera.whenPressed(new SwitchCamera());
+
+    testEncoders.whenPressed(new EncoderDrive(40, .3));
   }
 
   public Joystick getDriverJoystick() {

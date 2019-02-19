@@ -19,11 +19,17 @@ public class SwitchCamera extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    if (Robot.cameraswitch.getSource() == Robot.camera2) {
+    System.out.println("camera switch is " + Robot.cameraswitch.getSource());
+   
+    if (Robot.switchingCameras) {
       Robot.cameraswitch.setSource(Robot.camera3);
+      Robot.switchingCameras = false;
+      System.out.println("camera 3 is: " + Robot.camera3);
     }
     else {
       Robot.cameraswitch.setSource(Robot.camera2);
+      Robot.switchingCameras = true;
+      System.out.println("camera 2 is: " + Robot.camera2);
     }
   }
 
