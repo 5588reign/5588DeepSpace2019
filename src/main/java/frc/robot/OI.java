@@ -35,6 +35,8 @@ public class OI {
   private static final int RIGHT_BUMPER_XBOX = 6;
   private static final int START_ARROW = 8;
   private static final int BUTTON_1_JOYSTICK = 1;
+  private static final int BUTTON_3_JOYSTICK = 3;
+  private static final int BUTTON_4_JOYSTICK = 4;
   private static final int BUTTON_6_JOYSTICK = 6;
   private static final int BUTTON_7_JOYSTICK = 7;
   private static final int BUTTON_11_JOYSTICK = 11;
@@ -47,8 +49,8 @@ public class OI {
   Button hatchPusherButton = new JoystickButton(manipulatorJoystick, A_BUTTON_XBOX);
   Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, START_ARROW);
 
-  Button turnRightButton = new JoystickButton(manipulatorJoystick, Y_BUTTON_XBOX);
-  Button turnLeftButton = new JoystickButton(manipulatorJoystick, X_BUTTON_XBOX);
+  Button turnRightButton = new JoystickButton(driverJoystick,BUTTON_4_JOYSTICK);
+  Button turnLeftButton = new JoystickButton(driverJoystick,BUTTON_3_JOYSTICK);
 
   //Button firstLevelLift = new JoystickButton(manipulatorJoystick, A_BUTTON_XBOX);
   //Button secondLevelLift = new JoystickButton(manipulatorJoystick, X_BUTTON_XBOX);
@@ -58,7 +60,7 @@ public class OI {
   Button retractFrontPneumatic = new JoystickButton(driverJoystick, BUTTON_7_JOYSTICK);
   Button retractBackPneumatic = new JoystickButton(driverJoystick, BUTTON_11_JOYSTICK);
   
-  Button testEncoders = new JoystickButton(driverJoystick, BUTTON_12_JOYSTICK);
+  Button driveOfHab = new JoystickButton(manipulatorJoystick, LEFT_BUMPER_XBOX);
 
   Button switchCamera = new JoystickButton(driverJoystick, BUTTON_1_JOYSTICK);
 
@@ -74,12 +76,12 @@ public class OI {
     retractBackPneumatic.whenPressed(new LowerRobot(false));
     extendBothPneumatics.whenPressed(new RaiseRobot());
 
-    turnRightButton.whenPressed(new GyroscopeTurn(5));
-    turnLeftButton.whenPressed(new GyroscopeTurn(-5));
+    turnRightButton.whenPressed(new GyroscopeTurn(3));
+    turnLeftButton.whenPressed(new GyroscopeTurn(-3));
 
     switchCamera.whenPressed(new SwitchCamera());
 
-    testEncoders.whenPressed(new EncoderDrive(40, .3));
+    driveOfHab.whenPressed(new EncoderDrive(-33, -.65));
   }
 
   public Joystick getDriverJoystick() {

@@ -26,7 +26,7 @@ public class HatchPneumatics extends Subsystem {
 
   public HatchPneumatics(){
     c.setClosedLoopControl(true);
-    hatchGrabber.set(DoubleSolenoid.Value.kReverse);
+    hatchGrabber.set(DoubleSolenoid.Value.kForward);
     hatchPusher.set(DoubleSolenoid.Value.kReverse); 
   }
 

@@ -24,7 +24,7 @@ import frc.robot.*;
  */
 public class Drive extends Subsystem implements MotherSystem {
   //distance per pulse = pi * the wheel diameter in inches / pulse per revolution * fudge factor
-  private static final double DISTANCE_PER_PULSE_INCHES = (Math.PI * 1.25) / 256 * 1;
+  private static final double DISTANCE_PER_PULSE_INCHES = (Math.PI * 6) / 256 * 1;
 
   private VictorSPX frontLeftMotor = new VictorSPX(12);
   private VictorSPX backLeftMotor = new VictorSPX(13);
@@ -53,8 +53,8 @@ public class Drive extends Subsystem implements MotherSystem {
 
     rightEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
     leftEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
-    leftEncoder.setReverseDirection(true);
-    rightEncoder.setReverseDirection(false);
+    leftEncoder.setReverseDirection(false);
+    rightEncoder.setReverseDirection(true);
   } 
 
   public void resetEncoders() {
@@ -63,10 +63,12 @@ public class Drive extends Subsystem implements MotherSystem {
   }
 
   public double getRightEncoderDistance() {
+    System.out.println("encoder right :" + rightEncoder.get());
     return rightEncoder.getDistance();
   }
 
   public double getLeftEncoderDistance() {
+    System.out.println("encoder left :" + leftEncoder.get());
     return leftEncoder.getDistance();
   }
   
