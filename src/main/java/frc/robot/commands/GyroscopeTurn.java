@@ -40,10 +40,10 @@ public class GyroscopeTurn extends Command {
   protected void execute() {
     degreesTurned = Robot.gyroscope.getAngle();
     if (isTurningRight) {
-      Robot.drive.setSpeed(.2, -.2);
+      Robot.drive.setSpeed(.3, -.3);
     }
     else {
-      Robot.drive.setSpeed(-.2, .2);
+      Robot.drive.setSpeed(-.3, .3);
     }
     System.out.println(degreesTurned);
   }

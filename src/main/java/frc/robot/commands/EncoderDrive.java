@@ -38,7 +38,7 @@ public class EncoderDrive extends Command {
     rightEncoderDistance = Robot.drive.getRightEncoderDistance();
     leftEncoderDistance = Robot.drive.getLeftEncoderDistance();
 
-    /*if (rightEncoderDistance - leftEncoderDistance >= 0.05) {
+    if (rightEncoderDistance - leftEncoderDistance >= 0.05) {
       correctingLeft = .1;
       System.out.println("Activated Correcting Left:");
     }
@@ -46,7 +46,7 @@ public class EncoderDrive extends Command {
     if (leftEncoderDistance - rightEncoderDistance >= 0.05) {
       correctingRight = .1;
       System.out.println("Activated Correcting Right:");
-    }*/
+    }
 
     Robot.drive.setSpeed(speed + correctingLeft, speed + correctingRight);
 
@@ -61,9 +61,9 @@ public class EncoderDrive extends Command {
   @Override
   protected boolean isFinished() {
     if(distance > 0 && distance <= rightEncoderDistance && distance <= leftEncoderDistance)
+    //distance > 0 && distance <= rightEncoderDistance && distance <= leftEncoderDistance
       return true;
-    else if(distance < 0 && distance >= leftEncoderDistance) {
-      //distance < 0 && distance >= rightEncoderDistance && distance >= leftEncoderDistance
+    else if(distance < 0 && distance >= rightEncoderDistance && distance >= leftEncoderDistance) {
       return true;
     }
  

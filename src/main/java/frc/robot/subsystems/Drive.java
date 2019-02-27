@@ -53,8 +53,8 @@ public class Drive extends Subsystem implements MotherSystem {
 
     rightEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
     leftEncoder.setDistancePerPulse(DISTANCE_PER_PULSE_INCHES);
-    leftEncoder.setReverseDirection(false);
-    rightEncoder.setReverseDirection(true);
+    leftEncoder.setReverseDirection(true);
+    rightEncoder.setReverseDirection(false);
   } 
 
   public void resetEncoders() {
@@ -63,12 +63,12 @@ public class Drive extends Subsystem implements MotherSystem {
   }
 
   public double getRightEncoderDistance() {
-    System.out.println("encoder right :" + rightEncoder.get());
+    System.out.println("encoder right :" + rightEncoder.getDistance());
     return rightEncoder.getDistance();
   }
 
   public double getLeftEncoderDistance() {
-    System.out.println("encoder left :" + leftEncoder.get());
+    System.out.println("encoder left :" + leftEncoder.getDistance());
     return leftEncoder.getDistance();
   }
   

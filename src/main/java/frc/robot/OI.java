@@ -16,6 +16,7 @@ import frc.robot.commands.LightSensor;
 import frc.robot.commands.EncoderLift;
 import frc.robot.commands.GyroscopeTurn;
 import frc.robot.commands.RaiseRobot;
+import frc.robot.commands.RightCargoAuto;
 import frc.robot.commands.TurnWhilePress;
 import frc.robot.commands.LowerRobot;
 import frc.robot.commands.SwitchCamera;
@@ -60,7 +61,7 @@ public class OI {
   Button retractFrontPneumatic = new JoystickButton(driverJoystick, BUTTON_7_JOYSTICK);
   Button retractBackPneumatic = new JoystickButton(driverJoystick, BUTTON_11_JOYSTICK);
   
-  Button driveOfHab = new JoystickButton(manipulatorJoystick, LEFT_BUMPER_XBOX);
+  Button driveOffHab = new JoystickButton(manipulatorJoystick, LEFT_BUMPER_XBOX);
 
   Button switchCamera = new JoystickButton(driverJoystick, BUTTON_1_JOYSTICK);
 
@@ -81,7 +82,8 @@ public class OI {
 
     switchCamera.whenPressed(new SwitchCamera());
 
-    driveOfHab.whenPressed(new EncoderDrive(-33, -.65));
+    driveOffHab.whenPressed(new RightCargoAuto());
+    //driveOffHab.whenPressed(new EncoderDrive(100, .2));
   }
 
   public Joystick getDriverJoystick() {

@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import org.opencv.imgproc.Imgproc;
+
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -15,14 +17,16 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.vision.VisionPipeline;
+import edu.wpi.first.vision.VisionRunner;
+import edu.wpi.first.vision.VisionThread;
+import org.opencv.core.Rect;
 import frc.robot.subsystems.ClimbingPneumatics;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Gyroscope;
+import frc.robot.subsystems.HatchPneumatics;
 import frc.robot.subsystems.I2Csubsystem;
 import frc.robot.subsystems.Lift;
-import frc.robot.subsystems.HatchPneumatics;
-
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -44,6 +48,17 @@ public class Robot extends TimedRobot {
   public static UsbCamera camera3;
   public static MjpegServer cameraswitch;
   public static Boolean switchingCameras = true;
+
+  private static final int IMG_WIDTH = 320;
+  private static final int IMG_HEIGHT = 240;
+
+  private VisionThread visionThread;
+  public double centerX = 0.0;
+  public static double turnAwayFromCenter = 0.0;
+
+  private final Object imgLock = new Object();
+
+
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   
@@ -67,6 +82,20 @@ public class Robot extends TimedRobot {
    
     camera1 = CameraServer.getInstance().startAutomaticCapture("camera front", 0);
     camera1.setBrightness(1); 
+    camera1.setResolution(IMG_WIDTH, IMG_HEIGHT);
+
+    /*visionThread = new VisionThread(camera1, new VisionGripPipeline(), pipeline -> { 
+      if (!pipeline.filterContoursOutput().isEmpty()) {
+        Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+        synchronized (imgLock) {
+          centerX = r.x + (r.width / 2);
+        }
+      }
+    });
+    
+  visionThread.start();*/
+
+
     camera2 = CameraServer.getInstance().startAutomaticCapture("camera back", 1);
     camera2.setBrightness(1);
     camera3 = CameraServer.getInstance().startAutomaticCapture("camera floor", 2);
@@ -154,6 +183,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    /*double centerX;
+    synchronized (imgLock) {
+      centerX = this.centerX;
+    }
+    turnAwayFromCenter = centerX - (IMG_WIDTH / 2);
+    System.out.println(turnAwayFromCenter);*/
+
     Scheduler.getInstance().run();
   }
 
