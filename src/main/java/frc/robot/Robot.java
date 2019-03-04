@@ -37,10 +37,10 @@ import frc.robot.subsystems.Lift;
  */
 public class Robot extends TimedRobot {
   public static Drive drive = new Drive();
-  public static HatchPneumatics hatchPneumatics = new HatchPneumatics();  
+  //public static HatchPneumatics hatchPneumatics = new HatchPneumatics();  
   public static I2Csubsystem i2Csub = new I2Csubsystem();
-  public static ClimbingPneumatics climbingPneumatics = new ClimbingPneumatics();
-  public static Lift lift = new Lift();
+  //public static ClimbingPneumatics climbingPneumatics = new ClimbingPneumatics();
+  //public static Lift lift = new Lift();
   public static Gyroscope gyroscope = new Gyroscope();
   public static OI m_oi;
   public static UsbCamera camera1;
@@ -53,7 +53,8 @@ public class Robot extends TimedRobot {
   private static final int IMG_HEIGHT = 240;
 
   private VisionThread visionThread;
-  public double centerX = 0.0;
+  public double centertapeOneX = 0.0;
+  public double centertapeTwoX = 0.0;
   public static double turnAwayFromCenter = 0.0;
 
   private final Object imgLock = new Object();
@@ -79,27 +80,29 @@ public class Robot extends TimedRobot {
     });
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-   
-    camera1 = CameraServer.getInstance().startAutomaticCapture("camera front", 0);
-    camera1.setBrightness(1); 
-    camera1.setResolution(IMG_WIDTH, IMG_HEIGHT);
+    
+    camera3 = CameraServer.getInstance().startAutomaticCapture("camera floor", 2);
+    camera3.setBrightness(1);
+    camera3.setResolution(IMG_WIDTH, IMG_HEIGHT);
 
-    /*visionThread = new VisionThread(camera1, new VisionGripPipeline(), pipeline -> { 
+    visionThread = new VisionThread(camera3, new VisionGripPipeline(), pipeline -> { 
       if (!pipeline.filterContoursOutput().isEmpty()) {
-        Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+        Rect tape1 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+        Rect tape2 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
         synchronized (imgLock) {
-          centerX = r.x + (r.width / 2);
+          centertapeOneX = tape1.x + (tape1.width / 2);
+          centertapeTwoX = tape2.x + (tape2.width / 2);
         }
       }
     });
     
-  visionThread.start();*/
+    visionThread.start();
 
-
+    camera1 = CameraServer.getInstance().startAutomaticCapture("camera front", 0);
+    camera1.setBrightness(1);
     camera2 = CameraServer.getInstance().startAutomaticCapture("camera back", 1);
     camera2.setBrightness(1);
-    camera3 = CameraServer.getInstance().startAutomaticCapture("camera floor", 2);
-    camera3.setBrightness(1);
+    
 
     cameraswitch = CameraServer.getInstance().addSwitchedCamera("camera Switch");
     cameraswitch.setSource(camera2);
@@ -183,12 +186,17 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    /*double centerX;
+    double centertapeOneX;
+    double centertapeTwoX;
     synchronized (imgLock) {
-      centerX = this.centerX;
+      centertapeOneX = this.centertapeOneX;
+      centertapeTwoX = this.centertapeTwoX;
     }
-    turnAwayFromCenter = centerX - (IMG_WIDTH / 2);
-    System.out.println(turnAwayFromCenter);*/
+    turnAwayFromCenter = (IMG_WIDTH / 2) - (centertapeOneX + centertapeTwoX)/2;
+    System.out.println("turn away from center :" + turnAwayFromCenter);
+    System.out.println("tape 1" + centertapeOneX);
+    System.out.println("tape 2" + centertapeTwoX);
+
 
     Scheduler.getInstance().run();
   }

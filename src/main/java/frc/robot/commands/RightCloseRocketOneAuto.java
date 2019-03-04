@@ -9,19 +9,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class FrontRightCargoAuto extends CommandGroup {
+public class RightCloseRocketOneAuto extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public FrontRightCargoAuto() {
-    addSequential(new EncoderDrive(25, .65));
-    addSequential(new EncoderDrive(10, 0), 1.2);
-    addSequential(new EncoderDrive(-30, -.3), 1.25);
-    addSequential(new EncoderDrive(60, .3));
-    addSequential(new GyroscopeTurn(-12));
-    addSequential(new EncoderDrive(35, .4));
-    addSequential(new GyroscopeTurn(12));
-    //then alignment
+  public RightCloseRocketOneAuto() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

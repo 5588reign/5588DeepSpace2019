@@ -15,7 +15,7 @@ public class LiftCommand extends Command {
   public LiftCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.lift);
+    //requires(Robot.lift);
   }
 
   // Called just before this Command runs the first time
@@ -26,7 +26,7 @@ public class LiftCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.lift.liftToggleXbox(Robot.m_oi.getXboxController());
+   // Robot.lift.liftToggleXbox(Robot.m_oi.getXboxController());
   }
 
   // Make this return true when this Command no longer needs to run execute()

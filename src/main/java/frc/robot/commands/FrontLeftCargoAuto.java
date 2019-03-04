@@ -20,6 +20,7 @@ public class FrontLeftCargoAuto extends CommandGroup {
     addSequential(new GyroscopeTurn(7));
     addSequential(new EncoderDrive(100, .4));
     addSequential(new GyroscopeTurn(-7));
+    //addSequential(new hatchPusher);
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

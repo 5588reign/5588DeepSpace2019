@@ -7,48 +7,46 @@
 
 package frc.robot.commands;
 
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-
-
-public class HatchGrabber extends Command {
-  boolean isHatchGrabber;
-  public HatchGrabber(boolean isHatchGrabber) {
+public class VisionDrive extends Command {
+  public VisionDrive() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires(Robot.hatchPneumatics); 
-    this.isHatchGrabber = isHatchGrabber;
   }
-
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    if(isHatchGrabber){
-      //Robot.hatchPneumatics.changeValueSelectedPneumatic(Robot.hatchPneumatics.hatchGrabber);
-    }
-    else{
-      //Robot.hatchPneumatics.changeValueSelectedPneumatic(Robot.hatchPneumatics.hatchPusher);
-    }
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    double turn = Robot.turnAwayFromCenter;
+    if (turn > 15) {
+        System.out.println("I need to turn right");
+        Robot.drive.setSpeed(0.2, -0.2);
+    } else if (turn < -15) {
+        Robot.drive.setSpeed(-0.2, 0.2);
+        System.out.println("I need to turn left");
+    } else {
+        System.out.println("I'm going straight");
+        Robot.drive.setSpeed(0.25, 0.25);
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //RobotMap.hatchGrabber.set(DoubleSolenoid.Value.kOff);
   }
 
   // Called when another command which requires one or more of the same

@@ -11,16 +11,14 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.FrontRightCargoAuto;
+import frc.robot.commands.GyroscopeTurn;
 import frc.robot.commands.HatchGrabber;
 import frc.robot.commands.LightSensor;
-import frc.robot.commands.EncoderLift;
-import frc.robot.commands.GyroscopeTurn;
-import frc.robot.commands.RaiseRobot;
-import frc.robot.commands.RightCargoAuto;
-import frc.robot.commands.TurnWhilePress;
 import frc.robot.commands.LowerRobot;
+import frc.robot.commands.RaiseRobot;
 import frc.robot.commands.SwitchCamera;
-import frc.robot.commands.EncoderDrive;;
+import frc.robot.commands.VisionDrive;;
 
 
 /**
@@ -50,6 +48,7 @@ public class OI {
   Button hatchPusherButton = new JoystickButton(manipulatorJoystick, A_BUTTON_XBOX);
   Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, START_ARROW);
 
+  Button visionAlignmentButton = new JoystickButton(driverJoystick, BUTTON_12_JOYSTICK);
   Button turnRightButton = new JoystickButton(driverJoystick,BUTTON_4_JOYSTICK);
   Button turnLeftButton = new JoystickButton(driverJoystick,BUTTON_3_JOYSTICK);
 
@@ -82,8 +81,9 @@ public class OI {
 
     switchCamera.whenPressed(new SwitchCamera());
 
-    driveOffHab.whenPressed(new RightCargoAuto());
-    //driveOffHab.whenPressed(new EncoderDrive(100, .2));
+    driveOffHab.whenPressed(new FrontRightCargoAuto());
+    
+    visionAlignmentButton.whenPressed(new VisionDrive());
   }
 
   public Joystick getDriverJoystick() {
