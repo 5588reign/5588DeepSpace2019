@@ -15,7 +15,7 @@ public class LowerRobot extends Command {
   public LowerRobot(boolean isFrontPneumatic) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires(Robot.climbingPneumatics);
+    requires(Robot.climbingPneumatics);
     this.isFrontPneumatic = isFrontPneumatic;
   }
 
@@ -23,10 +23,10 @@ public class LowerRobot extends Command {
   @Override
   protected void initialize() {
     if(isFrontPneumatic){
-      //Robot.climbingPneumatics.setFrontToReverse();
+      Robot.climbingPneumatics.setFrontToReverse();
     }
     else{
-      //Robot.climbingPneumatics.setBackToReverse();
+      Robot.climbingPneumatics.setBackToReverse();
     }
   }
 

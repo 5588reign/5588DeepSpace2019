@@ -14,6 +14,16 @@ public class RightCloseRocketOneAuto extends CommandGroup {
    * Add your docs here.
    */
   public RightCloseRocketOneAuto() {
+      //up to .1 is deadzone :-(
+      addSequential(new EncoderDrive(25, .65));
+      addSequential(new EncoderDrive(10, 0), 2);
+      addSequential(new EncoderDrive(-30, -.30), 2.5);
+      addSequential(new EncoderDrive(60, .2));
+      addSequential(new HatchGrabber(false));
+      //rough est. 170
+      //addSequential(new GyroscopeTurn(20));
+      //addSequential(new EncoderDrive(60, .2));
+
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

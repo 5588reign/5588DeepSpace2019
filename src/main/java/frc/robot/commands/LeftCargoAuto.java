@@ -15,9 +15,11 @@ public class LeftCargoAuto extends CommandGroup {
    */
   public LeftCargoAuto() {
     addSequential(new EncoderDrive(25, .65));
-    addSequential(new EncoderDrive(-7, .4), 1);
-    addSequential(new EncoderDrive(170, .3));
-    addSequential(new GyroscopeTurn(90));
+    addSequential(new EncoderDrive(10, 0), 1.2);
+    addSequential(new EncoderDrive(-30, -.3), 1.25);
+    addSequential(new EncoderDrive(60, .3));
+    addSequential(new HatchGrabber(false));
+    //addSequential(new GyroscopeTurn(90));
     //then alignment
 
 

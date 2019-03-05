@@ -32,6 +32,7 @@ public class OI {
   private static final int Y_BUTTON_XBOX = 4;
   private static final int LEFT_BUMPER_XBOX = 5;
   private static final int RIGHT_BUMPER_XBOX = 6;
+  private static final int BACK_ARROW = 7;
   private static final int START_ARROW = 8;
   private static final int BUTTON_1_JOYSTICK = 1;
   private static final int BUTTON_3_JOYSTICK = 3;
@@ -46,7 +47,7 @@ public class OI {
 
   Button hatchGrabberButton = new JoystickButton(manipulatorJoystick, B_BUTTON_XBOX);
   Button hatchPusherButton = new JoystickButton(manipulatorJoystick, A_BUTTON_XBOX);
-  Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, START_ARROW);
+  //Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, START_ARROW);
 
   Button visionAlignmentButton = new JoystickButton(driverJoystick, BUTTON_12_JOYSTICK);
   Button turnRightButton = new JoystickButton(driverJoystick,BUTTON_4_JOYSTICK);
@@ -56,7 +57,7 @@ public class OI {
   //Button secondLevelLift = new JoystickButton(manipulatorJoystick, X_BUTTON_XBOX);
   //Button thirdLevelLift = new JoystickButton(manipulatorJoystick, Y_BUTTON_XBOX);
 
-  Button extendBothPneumatics = new JoystickButton(driverJoystick, BUTTON_6_JOYSTICK);
+  Button extendBothPneumatics = new JoystickButton(driverJoystick, BACK_ARROW);
   Button retractFrontPneumatic = new JoystickButton(driverJoystick, BUTTON_7_JOYSTICK);
   Button retractBackPneumatic = new JoystickButton(driverJoystick, BUTTON_11_JOYSTICK);
   
@@ -68,7 +69,7 @@ public class OI {
   public OI() {
     hatchGrabberButton.whenPressed(new HatchGrabber(true));
     hatchPusherButton.whenPressed(new HatchGrabber(false));
-    lightAlignmentButton.whileHeld(new LightSensor());
+    //lightAlignmentButton.whileHeld(new LightSensor());
     //firstLevelLift.whenPressed(new EncoderLift(0.3,0));
     //secondLevelLift.whenPressed(new EncoderLift(0.3,40));
     //thirdLevelLift.whenPressed(new EncoderLift(0.3,60));

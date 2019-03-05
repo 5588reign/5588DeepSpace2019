@@ -18,7 +18,7 @@ public class HatchGrabber extends Command {
   public HatchGrabber(boolean isHatchGrabber) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires(Robot.hatchPneumatics); 
+    requires(Robot.hatchPneumatics); 
     this.isHatchGrabber = isHatchGrabber;
   }
 
@@ -27,10 +27,10 @@ public class HatchGrabber extends Command {
   @Override
   protected void initialize() {
     if(isHatchGrabber){
-      //Robot.hatchPneumatics.changeValueSelectedPneumatic(Robot.hatchPneumatics.hatchGrabber);
+      Robot.hatchPneumatics.changeValueSelectedPneumatic(Robot.hatchPneumatics.hatchGrabber);
     }
     else{
-      //Robot.hatchPneumatics.changeValueSelectedPneumatic(Robot.hatchPneumatics.hatchPusher);
+      Robot.hatchPneumatics.changeValueSelectedPneumatic(Robot.hatchPneumatics.hatchPusher);
     }
   }
 
@@ -48,7 +48,7 @@ public class HatchGrabber extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //RobotMap.hatchGrabber.set(DoubleSolenoid.Value.kOff);
+   //RobotMap.hatchGrabber.set(DoubleSolenoid.Value.kOff);
   }
 
   // Called when another command which requires one or more of the same

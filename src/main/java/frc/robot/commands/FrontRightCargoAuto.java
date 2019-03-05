@@ -18,6 +18,7 @@ public class FrontRightCargoAuto extends CommandGroup {
     addSequential(new EncoderDrive(10, 0), 1.2);
     addSequential(new EncoderDrive(-30, -.3), 1.25);
     addSequential(new EncoderDrive(60, .3));
+    addSequential(new HatchGrabber(false));
     addSequential(new GyroscopeTurn(-12));
     addSequential(new EncoderDrive(35, .4));
     addSequential(new GyroscopeTurn(12));

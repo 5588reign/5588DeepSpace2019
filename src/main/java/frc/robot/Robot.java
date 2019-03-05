@@ -37,10 +37,10 @@ import frc.robot.subsystems.Lift;
  */
 public class Robot extends TimedRobot {
   public static Drive drive = new Drive();
-  //public static HatchPneumatics hatchPneumatics = new HatchPneumatics();  
+  public static HatchPneumatics hatchPneumatics = new HatchPneumatics();  
   public static I2Csubsystem i2Csub = new I2Csubsystem();
-  //public static ClimbingPneumatics climbingPneumatics = new ClimbingPneumatics();
-  //public static Lift lift = new Lift();
+  public static ClimbingPneumatics climbingPneumatics = new ClimbingPneumatics();
+  public static Lift lift = new Lift();
   public static Gyroscope gyroscope = new Gyroscope();
   public static OI m_oi;
   public static UsbCamera camera1;
@@ -85,7 +85,7 @@ public class Robot extends TimedRobot {
     camera3.setBrightness(1);
     camera3.setResolution(IMG_WIDTH, IMG_HEIGHT);
 
-    visionThread = new VisionThread(camera3, new VisionGripPipeline(), pipeline -> { 
+    /*visionThread = new VisionThread(camera3, new VisionGripPipeline(), pipeline -> { 
       if (!pipeline.filterContoursOutput().isEmpty()) {
         Rect tape1 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
         Rect tape2 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
@@ -96,7 +96,7 @@ public class Robot extends TimedRobot {
       }
     });
     
-    visionThread.start();
+    visionThread.start();*/
 
     camera1 = CameraServer.getInstance().startAutomaticCapture("camera front", 0);
     camera1.setBrightness(1);

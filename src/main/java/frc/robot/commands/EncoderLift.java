@@ -20,25 +20,25 @@ public class EncoderLift extends Command {
     // eg. requires(chassis);
     this.speed = speed;
     this.distance = distance;
-    //requires(Robot.lift);
+    requires(Robot.lift);
     }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    /*if(Robot.lift.getLifterEncoderDistance() > distance) {
+    if(Robot.lift.getLifterEncoderDistance() > distance) {
       isGoingDown = true;
     }
     else {
       isGoingDown = false;
-    }*/
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //lifterEncoderDistance = Robot.lift.getLifterEncoderDistance();
-    //Robot.lift.setSpeedWithDirection(speed, distance);
+    lifterEncoderDistance = Robot.lift.getLifterEncoderDistance();
+    Robot.lift.setSpeedWithDirection(speed, distance);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -60,7 +60,7 @@ public class EncoderLift extends Command {
   protected void end() {
     //change this to incorporate limit switches
     if(distance == 0){
-      //Robot.lift.resetEncoder();
+      Robot.lift.resetEncoder();
     }
   }
 

@@ -14,6 +14,11 @@ public class LeftCloseRocketOneAuto extends CommandGroup {
    * Add your docs here.
    */
   public LeftCloseRocketOneAuto() {
+    addSequential(new EncoderDrive(25, .65));
+    addSequential(new EncoderDrive(10, 0), 1.2);
+    addSequential(new EncoderDrive(-30, -.3), 1.25);
+    addSequential(new EncoderDrive(60, .3));
+    addSequential(new HatchGrabber(false));
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

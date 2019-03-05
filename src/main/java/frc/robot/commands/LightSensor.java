@@ -16,7 +16,7 @@ public class LightSensor extends Command {
   int readValue = -1;
   public LightSensor() {
     requires(Robot.i2Csub);
-    //requires(Robot.drive);
+    requires(Robot.drive);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
