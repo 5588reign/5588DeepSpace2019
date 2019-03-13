@@ -12,17 +12,24 @@ import frc.robot.Robot;
 
 public class LowerRobot extends Command {
   boolean isFrontPneumatic;
-  public LowerRobot(boolean isFrontPneumatic) {
+  boolean simultaneous;
+  public LowerRobot(boolean isFrontPneumatic, boolean simultaneous) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.climbingPneumatics);
     this.isFrontPneumatic = isFrontPneumatic;
+    this.simultaneous = simultaneous;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    if(isFrontPneumatic){
+    if(simultaneous)
+    {
+      Robot.climbingPneumatics.setFrontToReverse();
+      Robot.climbingPneumatics.setBackToReverse();
+    }
+    else if(isFrontPneumatic){
       Robot.climbingPneumatics.setFrontToReverse();
     }
     else{

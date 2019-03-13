@@ -19,7 +19,7 @@ public class DriveHABMotor extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.climbingPneumatics.HABToggleXbox(Robot.m_oi.getXboxController());
+    //Robot.climbingPneumatics.HABToggleXbox(Robot.m_oi.getXboxController());
   }
 
   // Called repeatedly when this Command is scheduled to run

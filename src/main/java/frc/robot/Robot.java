@@ -52,12 +52,12 @@ public class Robot extends TimedRobot {
   private static final int IMG_WIDTH = 320;
   private static final int IMG_HEIGHT = 240;
 
-  private VisionThread visionThread;
+  //private VisionThread visionThread;
   public double centertapeOneX = 0.0;
   public double centertapeTwoX = 0.0;
   public static double turnAwayFromCenter = 0.0;
 
-  private final Object imgLock = new Object();
+  //private final Object imgLock = new Object();
 
 
   Command m_autonomousCommand;
@@ -186,20 +186,21 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    double centertapeOneX;
+    /*double centertapeOneX;
     double centertapeTwoX;
     synchronized (imgLock) {
+      
       centertapeOneX = this.centertapeOneX;
       centertapeTwoX = this.centertapeTwoX;
     }
     turnAwayFromCenter = (IMG_WIDTH / 2) - (centertapeOneX + centertapeTwoX)/2;
     System.out.println("turn away from center :" + turnAwayFromCenter);
     System.out.println("tape 1" + centertapeOneX);
-    System.out.println("tape 2" + centertapeTwoX);
+    System.out.println("tape 2" + centertapeTwoX);*/
 
 
     Scheduler.getInstance().run();
-  }
+    }
 
   /**
    * This function is called periodically during test mode.

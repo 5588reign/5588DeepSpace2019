@@ -14,11 +14,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.FrontRightCargoAuto;
 import frc.robot.commands.GyroscopeTurn;
 import frc.robot.commands.HatchGrabber;
-import frc.robot.commands.LightSensor;
+import frc.robot.commands.LockLift;
 import frc.robot.commands.LowerRobot;
 import frc.robot.commands.RaiseRobot;
+import frc.robot.commands.Reverse;
 import frc.robot.commands.SwitchCamera;
-import frc.robot.commands.VisionDrive;;
+//import frc.robot.commands.VisionDrive;;
 
 
 /**
@@ -37,8 +38,11 @@ public class OI {
   private static final int BUTTON_1_JOYSTICK = 1;
   private static final int BUTTON_3_JOYSTICK = 3;
   private static final int BUTTON_4_JOYSTICK = 4;
+  private static final int BUTTON_5_JOYSTICK = 5;
   private static final int BUTTON_6_JOYSTICK = 6;
   private static final int BUTTON_7_JOYSTICK = 7;
+  private static final int BUTTON_9_JOYSTICK = 9;
+  private static final int BUTTON_10_JOYSTICK = 10;
   private static final int BUTTON_11_JOYSTICK = 11;
   private static final int BUTTON_12_JOYSTICK = 12;
 
@@ -52,18 +56,25 @@ public class OI {
   Button visionAlignmentButton = new JoystickButton(driverJoystick, BUTTON_12_JOYSTICK);
   Button turnRightButton = new JoystickButton(driverJoystick,BUTTON_4_JOYSTICK);
   Button turnLeftButton = new JoystickButton(driverJoystick,BUTTON_3_JOYSTICK);
+  Button turnRight90Button = new JoystickButton(driverJoystick, BUTTON_5_JOYSTICK);
+  Button turnLeft90Button = new JoystickButton(driverJoystick, BUTTON_6_JOYSTICK);
 
   //Button firstLevelLift = new JoystickButton(manipulatorJoystick, A_BUTTON_XBOX);
   //Button secondLevelLift = new JoystickButton(manipulatorJoystick, X_BUTTON_XBOX);
   //Button thirdLevelLift = new JoystickButton(manipulatorJoystick, Y_BUTTON_XBOX);
 
-  Button extendBothPneumatics = new JoystickButton(driverJoystick, BACK_ARROW);
+  Button extendBothPneumatics = new JoystickButton(manipulatorJoystick, BACK_ARROW);
+  Button retractBothPneumatics = new JoystickButton(driverJoystick, BUTTON_10_JOYSTICK);
   Button retractFrontPneumatic = new JoystickButton(driverJoystick, BUTTON_7_JOYSTICK);
   Button retractBackPneumatic = new JoystickButton(driverJoystick, BUTTON_11_JOYSTICK);
   
   Button driveOffHab = new JoystickButton(manipulatorJoystick, LEFT_BUMPER_XBOX);
 
   Button switchCamera = new JoystickButton(driverJoystick, BUTTON_1_JOYSTICK);
+  
+  Button autoReverse = new JoystickButton(driverJoystick, BUTTON_9_JOYSTICK);
+
+  Button lockLift = new JoystickButton(manipulatorJoystick, RIGHT_BUMPER_XBOX);
 
 
   public OI() {
@@ -73,18 +84,27 @@ public class OI {
     //firstLevelLift.whenPressed(new EncoderLift(0.3,0));
     //secondLevelLift.whenPressed(new EncoderLift(0.3,40));
     //thirdLevelLift.whenPressed(new EncoderLift(0.3,60));
-    retractFrontPneumatic.whenPressed(new LowerRobot(true));
-    retractBackPneumatic.whenPressed(new LowerRobot(false));
+    retractFrontPneumatic.whenPressed(new LowerRobot(true, false));
+    retractBackPneumatic.whenPressed(new LowerRobot(false, false));
     extendBothPneumatics.whenPressed(new RaiseRobot());
+    retractBothPneumatics.whenPressed(new LowerRobot(true, true));
 
     turnRightButton.whenPressed(new GyroscopeTurn(3));
     turnLeftButton.whenPressed(new GyroscopeTurn(-3));
 
+    turnRight90Button.whenPressed(new GyroscopeTurn(90));
+    turnLeft90Button.whenPressed(new GyroscopeTurn(-90));
+  
+
     switchCamera.whenPressed(new SwitchCamera());
 
     driveOffHab.whenPressed(new FrontRightCargoAuto());
+
+    autoReverse.whenPressed(new Reverse());
+
+    lockLift.whenPressed(new LockLift(RobotMap.LOCK_LIFT_SPEED)); //THIS IS A HOLDER VALUE, FIGURE OUT WHAT SPEED THE LIFT DRIFTS DOWN AT!!! please
     
-    visionAlignmentButton.whenPressed(new VisionDrive());
+    //visionAlignmentButton.whenPressed(new VisionDrive());
   }
 
   public Joystick getDriverJoystick() {

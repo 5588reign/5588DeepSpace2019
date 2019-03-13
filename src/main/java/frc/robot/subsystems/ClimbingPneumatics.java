@@ -31,11 +31,13 @@ public class ClimbingPneumatics extends Subsystem {
     drivingHAB.setInverted(false);
   }
 
-  public void setToForward() {
+  public void setFrontToForward() {
     FrontRobotRaise.set(DoubleSolenoid.Value.kForward);
-    BackRobotRaise.set(DoubleSolenoid.Value.kForward);
   }
 
+  public void setBackToForward() {
+    BackRobotRaise.set(DoubleSolenoid.Value.kForward);
+  }
   public void setFrontToReverse() {
     FrontRobotRaise.set(DoubleSolenoid.Value.kReverse);
   }

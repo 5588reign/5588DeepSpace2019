@@ -74,6 +74,7 @@ public class Drive extends Subsystem implements MotherSystem {
   
   public void setSpeed(double leftSpeed, double rightSpeed) {
     frontLeftMotor.set(ControlMode.PercentOutput, leftSpeed);
+    System.out.println("setting speed");
     frontRightMotor.set(ControlMode.PercentOutput, rightSpeed);
   }
 
@@ -82,6 +83,7 @@ public class Drive extends Subsystem implements MotherSystem {
     double rightSpeed = interpretSpeed(-joystick.getRawAxis(1)) - interpretSpeed(joystick.getRawAxis(0));
     setSpeed(leftSpeed, rightSpeed);
   }
+
 
   public double deadZone(double speed) {
     if (Math.abs(speed) < .05) {

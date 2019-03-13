@@ -10,36 +10,35 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class RaiseRobot extends Command {
-  public RaiseRobot() {
-  
+public class LockLift extends Command {
+  double speed;
+  public LockLift(double speed) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    super(1.5);
-    requires(Robot.climbingPneumatics);
+    requires(Robot.lift);
+    this.speed = speed;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.climbingPneumatics.setFrontToForward();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.lift.setSpeed(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climbingPneumatics.setBackToForward();
   }
 
   // Called when another command which requires one or more of the same

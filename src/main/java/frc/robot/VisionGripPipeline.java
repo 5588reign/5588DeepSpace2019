@@ -1,3 +1,5 @@
+
+/*
 package frc.robot;
 
 import java.io.File;
@@ -17,6 +19,7 @@ import org.opencv.features2d.FeatureDetector;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.*;
 import org.opencv.objdetect.*;
+*/
 
 /**
 * VisionGripPipeline class.
@@ -25,6 +28,7 @@ import org.opencv.objdetect.*;
 *
 * @author GRIP
 */
+/*
 public class VisionGripPipeline implements VisionPipeline {
 
 	//Outputs
@@ -40,7 +44,8 @@ public class VisionGripPipeline implements VisionPipeline {
 
 	/**
 	 * This is the primary method that runs the entire pipeline and updates the outputs.
-	 */
+	 */ 
+	/*
 	@Override	public void process(Mat source0) {
 		// Step Resize_Image0:
 		Mat resizeImageInput = source0;
@@ -91,6 +96,7 @@ public class VisionGripPipeline implements VisionPipeline {
 	 * This method is a generated getter for the output of a Resize_Image.
 	 * @return Mat output from Resize_Image.
 	 */
+	/*
 	public Mat resizeImageOutput() {
 		return resizeImageOutput;
 	}
@@ -99,6 +105,7 @@ public class VisionGripPipeline implements VisionPipeline {
 	 * This method is a generated getter for the output of a HSV_Threshold.
 	 * @return Mat output from HSV_Threshold.
 	 */
+	/*
 	public Mat hsvThresholdOutput() {
 		return hsvThresholdOutput;
 	}
@@ -107,6 +114,7 @@ public class VisionGripPipeline implements VisionPipeline {
 	 * This method is a generated getter for the output of a CV_erode.
 	 * @return Mat output from CV_erode.
 	 */
+	/*
 	public Mat cvErodeOutput() {
 		return cvErodeOutput;
 	}
@@ -115,6 +123,7 @@ public class VisionGripPipeline implements VisionPipeline {
 	 * This method is a generated getter for the output of a Find_Contours.
 	 * @return ArrayList<MatOfPoint> output from Find_Contours.
 	 */
+	/*
 	public ArrayList<MatOfPoint> findContoursOutput() {
 		return findContoursOutput;
 	}
@@ -123,6 +132,7 @@ public class VisionGripPipeline implements VisionPipeline {
 	 * This method is a generated getter for the output of a Filter_Contours.
 	 * @return ArrayList<MatOfPoint> output from Filter_Contours.
 	 */
+	/*
 	public ArrayList<MatOfPoint> filterContoursOutput() {
 		return filterContoursOutput;
 	}
@@ -136,6 +146,7 @@ public class VisionGripPipeline implements VisionPipeline {
 	 * @param interpolation The type of interpolation.
 	 * @param output The image in which to store the output.
 	 */
+	/*
 	private void resizeImage(Mat input, double width, double height,
 		int interpolation, Mat output) {
 		Imgproc.resize(input, output, new Size(width, height), 0.0, 0.0, interpolation);
@@ -150,6 +161,7 @@ public class VisionGripPipeline implements VisionPipeline {
 	 * @param val The min and max value
 	 * @param output The image in which to store the output.
 	 */
+	/*
 	private void hsvThreshold(Mat input, double[] hue, double[] sat, double[] val,
 	    Mat out) {
 		Imgproc.cvtColor(input, out, Imgproc.COLOR_BGR2HSV);
@@ -167,6 +179,7 @@ public class VisionGripPipeline implements VisionPipeline {
 	 * @param borderValue value to be used for a constant border.
 	 * @param dst Output Image.
 	 */
+	/*
 	private void cvErode(Mat src, Mat kernel, Point anchor, double iterations,
 		int borderType, Scalar borderValue, Mat dst) {
 		if (kernel == null) {
@@ -188,6 +201,7 @@ public class VisionGripPipeline implements VisionPipeline {
 	 * @param maskSize the size of the mask.
 	 * @param output The image in which to store the output.
 	 */
+	/*
 	private void findContours(Mat input, boolean externalOnly,
 		List<MatOfPoint> contours) {
 		Mat hierarchy = new Mat();
@@ -220,6 +234,7 @@ public class VisionGripPipeline implements VisionPipeline {
 	 * @param minRatio minimum ratio of width to height
 	 * @param maxRatio maximum ratio of width to height
 	 */
+	/*
 	private void filterContours(List<MatOfPoint> inputContours, double minArea,
 		double minPerimeter, double minWidth, double maxWidth, double minHeight, double
 		maxHeight, double[] solidity, double maxVertexCount, double minVertexCount, double
@@ -256,4 +271,5 @@ public class VisionGripPipeline implements VisionPipeline {
 
 
 }
+*/
 

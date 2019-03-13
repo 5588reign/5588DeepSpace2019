@@ -7,22 +7,20 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.RobotMap;
 
-public class RaiseRobot extends Command {
-  public RaiseRobot() {
-  
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    super(1.5);
-    requires(Robot.climbingPneumatics);
+public class Reverse extends CommandGroup {
+  public LockLift lift = new LockLift(RobotMap.LOCK_LIFT_SPEED);
+  public Reverse() {
+
+    //These are hold values! Midge, please don't be dumb :-)
+    addSequential(new EncoderDrive(10, .2));
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.climbingPneumatics.setFrontToForward();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -33,13 +31,12 @@ public class RaiseRobot extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climbingPneumatics.setBackToForward();
   }
 
   // Called when another command which requires one or more of the same
