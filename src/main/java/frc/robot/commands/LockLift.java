@@ -47,3 +47,4 @@ public class LockLift extends Command {
   protected void interrupted() {
   }
 }
+

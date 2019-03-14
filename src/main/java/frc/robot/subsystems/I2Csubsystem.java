@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+/*
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.I2C;
@@ -15,6 +15,7 @@ import frc.robot.commands.LightSensor;
 /**
  * Add your docs here.
  */
+/*
 public class I2Csubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -37,7 +38,7 @@ public class I2Csubsystem extends Subsystem {
     }
   }
   */
-
+/*
   public void readFromLight() {
     byte[] sensorsByte = new byte[1];
     
@@ -108,3 +109,4 @@ public class I2Csubsystem extends Subsystem {
     setDefaultCommand(new LightSensor());
   }
 }
+*/
