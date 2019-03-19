@@ -24,6 +24,7 @@ import org.opencv.core.Rect;
 import frc.robot.subsystems.ClimbingPneumatics;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Gyroscope;
+import frc.robot.subsystems.HABDrive;
 import frc.robot.subsystems.HatchPneumatics;
 //import frc.robot.subsystems.I2Csubsystem;
 import frc.robot.subsystems.Lift;
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
   //public static I2Csubsystem i2Csub = new I2Csubsystem();
   public static ClimbingPneumatics climbingPneumatics = new ClimbingPneumatics();
   public static Lift lift = new Lift();
+  public static HABDrive habDrive = new HABDrive();
   public static Gyroscope gyroscope = new Gyroscope();
   public static OI m_oi;
   public static UsbCamera camera1;

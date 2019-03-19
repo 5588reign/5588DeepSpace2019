@@ -9,15 +9,17 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.DriveHABMotor;
 import frc.robot.commands.FrontRightCargoAuto;
 import frc.robot.commands.GyroscopeTurn;
 import frc.robot.commands.HatchGrabber;
 import frc.robot.commands.LockLift;
 import frc.robot.commands.LowerRobot;
 import frc.robot.commands.RaiseRobot;
-import frc.robot.commands.Reverse;
+import frc.robot.commands.ReverseHoldLift;
 import frc.robot.commands.SwitchCamera;
 //import frc.robot.commands.VisionDrive;;
 
@@ -69,12 +71,14 @@ public class OI {
   Button retractBackPneumatic = new JoystickButton(driverJoystick, BUTTON_11_JOYSTICK);
   
   Button driveOffHab = new JoystickButton(manipulatorJoystick, LEFT_BUMPER_XBOX);
+  //Button driveOntoHab = new JoystickButton(manipulatorJoystick, X_BUTTON_XBOX);
 
   Button switchCamera = new JoystickButton(driverJoystick, BUTTON_1_JOYSTICK);
   
-  Button autoReverse = new JoystickButton(driverJoystick, BUTTON_9_JOYSTICK);
+  Button autoReverse = new JoystickButton(manipulatorJoystick, Y_BUTTON_XBOX);
 
   Button lockLift = new JoystickButton(manipulatorJoystick, RIGHT_BUMPER_XBOX);
+
 
 
   public OI() {
@@ -92,19 +96,21 @@ public class OI {
     turnRightButton.whenPressed(new GyroscopeTurn(3));
     turnLeftButton.whenPressed(new GyroscopeTurn(-3));
 
-    turnRight90Button.whenPressed(new GyroscopeTurn(90));
-    turnLeft90Button.whenPressed(new GyroscopeTurn(-90));
+    turnRight90Button.whenPressed(new GyroscopeTurn(-90));
+    turnLeft90Button.whenPressed(new GyroscopeTurn(90));
   
 
     switchCamera.whenPressed(new SwitchCamera());
 
     driveOffHab.whenPressed(new FrontRightCargoAuto());
+    //driveOntoHab.whenPressed(new DriveHABMotor());
 
-    autoReverse.whenPressed(new Reverse());
+    autoReverse.whenPressed(new ReverseHoldLift());
 
     lockLift.whenPressed(new LockLift(RobotMap.LOCK_LIFT_SPEED)); //THIS IS A HOLDER VALUE, FIGURE OUT WHAT SPEED THE LIFT DRIFTS DOWN AT!!! please
     
     //visionAlignmentButton.whenPressed(new VisionDrive());
+
   }
 
   public Joystick getDriverJoystick() {

@@ -74,7 +74,6 @@ public class Drive extends Subsystem implements MotherSystem {
   
   public void setSpeed(double leftSpeed, double rightSpeed) {
     frontLeftMotor.set(ControlMode.PercentOutput, leftSpeed);
-    System.out.println("setting speed");
     frontRightMotor.set(ControlMode.PercentOutput, rightSpeed);
   }
 

@@ -7,15 +7,14 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
-public class Reverse extends CommandGroup {
-  public LockLift lift = new LockLift(RobotMap.LOCK_LIFT_SPEED);
-  public Reverse() {
-
-    //These are hold values! Midge, please don't be dumb :-)
-    addSequential(new EncoderDrive(10, .2));
+public class JoystickHABDrive extends Command {
+  public JoystickHABDrive() {
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
+    requires(Robot.habDrive);
   }
 
   // Called just before this Command runs the first time
@@ -26,6 +25,7 @@ public class Reverse extends CommandGroup {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.habDrive.HABToggleXbox(Robot.m_oi.getXboxController());
   }
 
   // Make this return true when this Command no longer needs to run execute()
