@@ -7,8 +7,6 @@
 
 package frc.robot;
 
-import org.opencv.imgproc.Imgproc;
-
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -17,16 +15,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.vision.VisionPipeline;
-import edu.wpi.first.vision.VisionRunner;
-import edu.wpi.first.vision.VisionThread;
-import org.opencv.core.Rect;
 import frc.robot.subsystems.ClimbingPneumatics;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Gyroscope;
 import frc.robot.subsystems.HABDrive;
 import frc.robot.subsystems.HatchPneumatics;
-//import frc.robot.subsystems.I2Csubsystem;
+import frc.robot.subsystems.I2Csubsystem;
 import frc.robot.subsystems.Lift;
 
 /**
@@ -39,7 +33,7 @@ import frc.robot.subsystems.Lift;
 public class Robot extends TimedRobot {
   public static Drive drive = new Drive();
   public static HatchPneumatics hatchPneumatics = new HatchPneumatics();  
-  //public static I2Csubsystem i2Csub = new I2Csubsystem();
+  public static I2Csubsystem i2Csub = new I2Csubsystem();
   public static ClimbingPneumatics climbingPneumatics = new ClimbingPneumatics();
   public static Lift lift = new Lift();
   public static HABDrive habDrive = new HABDrive();
@@ -83,7 +77,7 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     
-    camera3 = CameraServer.getInstance().startAutomaticCapture("camera floor", 2);
+    /*camera3 = CameraServer.getInstance().startAutomaticCapture("camera floor", 2);
     camera3.setBrightness(1);
     camera3.setResolution(IMG_WIDTH, IMG_HEIGHT);
 
@@ -99,7 +93,7 @@ public class Robot extends TimedRobot {
     });
     
     visionThread.start();*/
-
+    /*
     camera1 = CameraServer.getInstance().startAutomaticCapture("camera front", 0);
     camera1.setBrightness(1);
     camera2 = CameraServer.getInstance().startAutomaticCapture("camera back", 1);
@@ -108,6 +102,7 @@ public class Robot extends TimedRobot {
 
     cameraswitch = CameraServer.getInstance().addSwitchedCamera("camera Switch");
     cameraswitch.setSource(camera2);
+    */
   }
 
   /**

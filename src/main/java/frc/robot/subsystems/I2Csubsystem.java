@@ -1,10 +1,12 @@
+
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-/*
+
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.I2C;
@@ -15,7 +17,7 @@ import frc.robot.commands.LightSensor;
 /**
  * Add your docs here.
  */
-/*
+
 public class I2Csubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -23,11 +25,13 @@ public class I2Csubsystem extends Subsystem {
   //private static final I2C i2CWriter = new I2C(I2C.Port.kOnboard, 0x20);
   private static final I2C i2CReaderFront = new I2C(I2C.Port.kOnboard, 0x21);
   //CHANGE THIS VALUE
-  private static final I2C i2CReaderBack = new I2C(I2C.Port.kOnboard, 5678); 
+  //private static final I2C i2CReaderBack = new I2C(I2C.Port.kOnboard, 5678); 
   private String frontSensors;
   private String backSensors;
 
-
+ public boolean checkSensor() {
+    return i2CReaderFront.addressOnly();
+ }
   /*public void writeToLight(boolean turnOn){
     
     if(turnOn){
@@ -38,17 +42,17 @@ public class I2Csubsystem extends Subsystem {
     }
   }
   */
-/*
+
   public void readFromLight() {
     byte[] sensorsByte = new byte[1];
     
     i2CReaderFront.readOnly(sensorsByte, sensorsByte.length);
     frontSensors = String.format("%8s", Integer.toBinaryString(sensorsByte[0] & 0xFF)).replace(' ', '0');
     
-    i2CReaderBack.readOnly(sensorsByte, sensorsByte.length);
-    backSensors = String.format("%8s", Integer.toBinaryString(sensorsByte[0] & 0xFF)).replace(' ', '0');
+    //i2CReaderBack.readOnly(sensorsByte, sensorsByte.length);
+    //backSensors = String.format("%8s", Integer.toBinaryString(sensorsByte[0] & 0xFF)).replace(' ', '0');
        
-    //System.out.println(frontSensors);
+    System.out.println(frontSensors);
   }
 
   //1=left, 2=straight, 3=right, 0= light is not reading
@@ -71,7 +75,7 @@ public class I2Csubsystem extends Subsystem {
     return RobotMap.NONE_IS_READING;
   }
 
-  public int backIsReading() {
+  /*public int backIsReading() {
     if(backSensors.charAt(3)=='0'){
       return RobotMap.BACK_MIDDLE_READING; //change this to indicate moving on to step three: reading from both front and back
     }
@@ -80,9 +84,9 @@ public class I2Csubsystem extends Subsystem {
     }
 
     return RobotMap.NONE_IS_READING;
-  }
+  }*/
 
-  public int frontAndBackReading() { 
+  /*public int frontAndBackReading() { 
     String frontAndBackMiddleSensors = frontSensors.substring(2,5) + backSensors.substring(2,5);
     switch(frontAndBackMiddleSensors){
       case "001001" : 
@@ -102,11 +106,10 @@ public class I2Csubsystem extends Subsystem {
       default :
         return RobotMap.NONE_IS_READING;
     }
-  }
+  }*/
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new LightSensor());
+    //setDefaultCommand(new LightSensor());
   }
 }
-*/

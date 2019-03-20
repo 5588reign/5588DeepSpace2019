@@ -9,19 +9,18 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.DriveHABMotor;
 import frc.robot.commands.FrontRightCargoAuto;
 import frc.robot.commands.GyroscopeTurn;
 import frc.robot.commands.HatchGrabber;
+import frc.robot.commands.LightSensor;
 import frc.robot.commands.LockLift;
 import frc.robot.commands.LowerRobot;
 import frc.robot.commands.RaiseRobot;
 import frc.robot.commands.ReverseHoldLift;
 import frc.robot.commands.SwitchCamera;
-//import frc.robot.commands.VisionDrive;;
+
 
 
 /**
@@ -79,6 +78,7 @@ public class OI {
 
   Button lockLift = new JoystickButton(manipulatorJoystick, RIGHT_BUMPER_XBOX);
 
+  Button lightSensor = new JoystickButton(driverJoystick, BUTTON_9_JOYSTICK);
 
 
   public OI() {
@@ -109,7 +109,8 @@ public class OI {
 
     lockLift.whenPressed(new LockLift(RobotMap.LOCK_LIFT_SPEED)); //THIS IS A HOLDER VALUE, FIGURE OUT WHAT SPEED THE LIFT DRIFTS DOWN AT!!! please
     
-    //visionAlignmentButton.whenPressed(new VisionDrive());
+    lightSensor.whenPressed(new LightSensor());
+    
 
   }
 
