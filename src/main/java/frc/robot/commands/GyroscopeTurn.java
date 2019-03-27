@@ -14,17 +14,23 @@ public class GyroscopeTurn extends Command {
   private double degreesTurned = 0;
   private double degreesToTravel = 0;
   private boolean isTurningRight;
+  private boolean returnToCenter = false;
 
   public GyroscopeTurn(double degreesToTravel) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     this.degreesToTravel = degreesToTravel;
+    if(degreesToTravel == 0) {
+      returnToCenter = true;
+    }
     if (degreesToTravel > 0) {
       isTurningRight = true;
     }
     else {
       isTurningRight = false;
     }
+    
+  
     requires(Robot.gyroscope);
     requires(Robot.drive);
   }
@@ -32,7 +38,16 @@ public class GyroscopeTurn extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.gyroscope.reset();
+    if(returnToCenter) {
+      degreesToTravel = 0 - Robot.gyroscope.getAngle();
+      System.out.println("degrees off: " + degreesToTravel);
+      if(degreesToTravel > 0){
+        isTurningRight = true;
+      }
+      else{
+        isTurningRight = false;      }
+    }
+      Robot.gyroscope.reset();
   }
 
   // Called repeatedly when this Command is sched tuled to run

@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.FrontRightCargoAuto;
 import frc.robot.commands.GyroscopeTurn;
 import frc.robot.commands.HatchGrabber;
 import frc.robot.commands.LightSensor;
@@ -19,6 +18,7 @@ import frc.robot.commands.LockLift;
 import frc.robot.commands.LowerRobot;
 import frc.robot.commands.RaiseRobot;
 import frc.robot.commands.ReverseHoldLift;
+import frc.robot.commands.RightCargoAuto;
 import frc.robot.commands.SwitchCamera;
 
 
@@ -54,7 +54,7 @@ public class OI {
   Button hatchPusherButton = new JoystickButton(manipulatorJoystick, A_BUTTON_XBOX);
   //Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, START_ARROW);
 
-  Button visionAlignmentButton = new JoystickButton(driverJoystick, BUTTON_12_JOYSTICK);
+  //Button visionAlignmentButton = new JoystickButton(driverJoystick, BUTTON_12_JOYSTICK);
   Button turnRightButton = new JoystickButton(driverJoystick,BUTTON_4_JOYSTICK);
   Button turnLeftButton = new JoystickButton(driverJoystick,BUTTON_3_JOYSTICK);
   Button turnRight90Button = new JoystickButton(driverJoystick, BUTTON_5_JOYSTICK);
@@ -102,14 +102,14 @@ public class OI {
 
     switchCamera.whenPressed(new SwitchCamera());
 
-    driveOffHab.whenPressed(new FrontRightCargoAuto());
+    driveOffHab.whenPressed(new RightCargoAuto());
     //driveOntoHab.whenPressed(new DriveHABMotor());
 
     autoReverse.whenPressed(new ReverseHoldLift());
 
     lockLift.whenPressed(new LockLift(RobotMap.LOCK_LIFT_SPEED)); //THIS IS A HOLDER VALUE, FIGURE OUT WHAT SPEED THE LIFT DRIFTS DOWN AT!!! please
     
-    lightSensor.whenPressed(new LightSensor());
+    lightSensor.whenPressed(new LightSensor(100));
     
 
   }

@@ -7,13 +7,16 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class LightSensor extends Command {
 
   int readValue = -1;
-  public LightSensor() {
+  public LightSensor(double timeout) {
+    super(timeout);
     requires(Robot.i2Csub);
     //requires(Robot.drive);
     // Use requires() here to declare subsystem dependencies
@@ -29,8 +32,9 @@ public class LightSensor extends Command {
   @Override
   protected void execute() {
     Robot.i2Csub.readFromLight();
+    readValue = Robot.i2Csub.frontOnlyReading();
+    System.out.println(readValue);
     //System.out.println(Robot.i2Csub.checkSensor());
-  }
 
     /*
     if(Robot.i2Csub.backIsReading()==RobotMap.NONE_IS_READING) {
@@ -52,16 +56,15 @@ public class LightSensor extends Command {
       Robot.drive.setSpeed(.1,.1);
     }
     else {
-      DriverStation.reportWarning("nothing is reading on light sensors", null);
-    }
+      //DriverStation.reportWarning("nothing is reading on light sensors", null);
+    }*/
     
   }
 
-*/
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true

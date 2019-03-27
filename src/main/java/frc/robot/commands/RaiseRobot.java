@@ -15,7 +15,7 @@ public class RaiseRobot extends Command {
   
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    super(1.5);
+    super(.1);
     requires(Robot.climbingPneumatics);
   }
 

@@ -85,7 +85,7 @@ public class Drive extends Subsystem implements MotherSystem {
 
 
   public double deadZone(double speed) {
-    if (Math.abs(speed) < .05) {
+    if (Math.abs(speed) < .025) {
       return 0;
     }
     else {

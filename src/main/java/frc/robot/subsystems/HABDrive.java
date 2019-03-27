@@ -55,7 +55,7 @@ public class HABDrive extends Subsystem {
   }
 
   public void HABToggleXbox(XboxController joystick) {
-    double speed = interpretSpeed(joystick.getRawAxis(5));
+    double speed = interpretSpeed(-joystick.getRawAxis(5));
     setSpeedHABMotor(speed);
   }
 

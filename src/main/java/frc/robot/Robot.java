@@ -77,7 +77,7 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     
-    /*camera3 = CameraServer.getInstance().startAutomaticCapture("camera floor", 2);
+    camera3 = CameraServer.getInstance().startAutomaticCapture("camera floor", 2);
     camera3.setBrightness(1);
     camera3.setResolution(IMG_WIDTH, IMG_HEIGHT);
 
@@ -93,7 +93,7 @@ public class Robot extends TimedRobot {
     });
     
     visionThread.start();*/
-    /*
+    
     camera1 = CameraServer.getInstance().startAutomaticCapture("camera front", 0);
     camera1.setBrightness(1);
     camera2 = CameraServer.getInstance().startAutomaticCapture("camera back", 1);
@@ -102,7 +102,7 @@ public class Robot extends TimedRobot {
 
     cameraswitch = CameraServer.getInstance().addSwitchedCamera("camera Switch");
     cameraswitch.setSource(camera2);
-    */
+  
   }
 
   /**
