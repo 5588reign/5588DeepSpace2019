@@ -6,19 +6,15 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
-import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.commands.RightCargoAuto;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.GyroscopeTurn;
 import frc.robot.commands.HatchGrabber;
-import frc.robot.commands.LightSensor;
-import frc.robot.commands.LockLift;
 import frc.robot.commands.LowerRobot;
 import frc.robot.commands.RaiseRobot;
 import frc.robot.commands.ReverseHoldLift;
-import frc.robot.commands.RightCargoAuto;
 import frc.robot.commands.SwitchCamera;
 
 
@@ -36,49 +32,50 @@ public class OI {
   private static final int RIGHT_BUMPER_XBOX = 6;
   private static final int BACK_ARROW = 7;
   private static final int START_ARROW = 8;
-  private static final int BUTTON_1_JOYSTICK = 1;
-  private static final int BUTTON_3_JOYSTICK = 3;
-  private static final int BUTTON_4_JOYSTICK = 4;
-  private static final int BUTTON_5_JOYSTICK = 5;
-  private static final int BUTTON_6_JOYSTICK = 6;
-  private static final int BUTTON_7_JOYSTICK = 7;
-  private static final int BUTTON_9_JOYSTICK = 9;
-  private static final int BUTTON_10_JOYSTICK = 10;
-  private static final int BUTTON_11_JOYSTICK = 11;
-  private static final int BUTTON_12_JOYSTICK = 12;
 
-  private final Joystick driverJoystick = new Joystick(0);
-  private final XboxController manipulatorJoystick = new XboxController(1);
+  private static final int A_BUTTON_XBOX_DRIVE = 1;
+  private static final int B_BUTTON_XBOX_DRIVE = 2;
+  private static final int X_BUTTON_XBOX_DRIVE = 3;
+  private static final int Y_BUTTON_XBOX_DRIVE = 4;
+  private static final int LEFT_BUMPER_XBOX_DRIVE = 5;
+  private static final int RIGHT_BUMPER_XBOX_DRIVE = 6;
+  private static final int BACK_ARROW_DRIVE = 7;
+  private static final int START_ARROW_DRIVE = 8;
+  private static final int JOYSTICK_RIGHT_CLICK = 10;
+  private static final int JOYSTICK_LEFT_CLICK = 9;
 
-  Button hatchGrabberButton = new JoystickButton(manipulatorJoystick, B_BUTTON_XBOX);
-  Button hatchPusherButton = new JoystickButton(manipulatorJoystick, A_BUTTON_XBOX);
+  private final XboxController driverXBox = new XboxController(1);
+  private final XboxController controllerXBox = new XboxController(2);
+
+  Button hatchGrabberButton = new JoystickButton(controllerXBox, B_BUTTON_XBOX);
+  Button hatchPusherButton = new JoystickButton(controllerXBox, A_BUTTON_XBOX);
   //Button lightAlignmentButton = new JoystickButton(manipulatorJoystick, START_ARROW);
 
-  //Button visionAlignmentButton = new JoystickButton(driverJoystick, BUTTON_12_JOYSTICK);
-  Button turnRightButton = new JoystickButton(driverJoystick,BUTTON_4_JOYSTICK);
-  Button turnLeftButton = new JoystickButton(driverJoystick,BUTTON_3_JOYSTICK);
-  Button turnRight90Button = new JoystickButton(driverJoystick, BUTTON_5_JOYSTICK);
-  Button turnLeft90Button = new JoystickButton(driverJoystick, BUTTON_6_JOYSTICK);
+  //Button visionAlignmentButton = new JoystickButton(driverXBox, BUTTON_12_JOYSTICK);
+  Button turnRightButton = new JoystickButton(driverXBox,RIGHT_BUMPER_XBOX_DRIVE);
+  Button turnLeftButton = new JoystickButton(driverXBox,LEFT_BUMPER_XBOX_DRIVE);
+  //Button turnRight90Button = new JoystickButton(driverXBox, BUTTON_5_JOYSTICK);
+  //Button turnLeft90Button = new JoystickButton(driverXBox, BUTTON_6_JOYSTICK);
 
   //Button firstLevelLift = new JoystickButton(manipulatorJoystick, A_BUTTON_XBOX);
   //Button secondLevelLift = new JoystickButton(manipulatorJoystick, X_BUTTON_XBOX);
   //Button thirdLevelLift = new JoystickButton(manipulatorJoystick, Y_BUTTON_XBOX);
 
-  Button extendBothPneumatics = new JoystickButton(manipulatorJoystick, BACK_ARROW);
-  Button retractBothPneumatics = new JoystickButton(driverJoystick, BUTTON_10_JOYSTICK);
-  Button retractFrontPneumatic = new JoystickButton(driverJoystick, BUTTON_7_JOYSTICK);
-  Button retractBackPneumatic = new JoystickButton(driverJoystick, BUTTON_11_JOYSTICK);
+  Button extendBothPneumatics = new JoystickButton(controllerXBox, START_ARROW);
+  Button retractBothPneumatics = new JoystickButton(driverXBox, BACK_ARROW);
+  Button retractFrontPneumatic = new JoystickButton(controllerXBox, LEFT_BUMPER_XBOX);
+  Button retractBackPneumatic = new JoystickButton(controllerXBox, RIGHT_BUMPER_XBOX);
   
-  Button driveOffHab = new JoystickButton(manipulatorJoystick, LEFT_BUMPER_XBOX);
+  //Button driveOffHab = new JoystickButton(manipulatorJoystick, LEFT_BUMPER_XBOX);
   //Button driveOntoHab = new JoystickButton(manipulatorJoystick, X_BUTTON_XBOX);
 
-  Button switchCamera = new JoystickButton(driverJoystick, BUTTON_1_JOYSTICK);
+  Button switchCamera = new JoystickButton(driverXBox, JOYSTICK_RIGHT_CLICK);
   
-  Button autoReverse = new JoystickButton(manipulatorJoystick, Y_BUTTON_XBOX);
+  Button autoReverse = new JoystickButton(controllerXBox, Y_BUTTON_XBOX);
 
-  Button lockLift = new JoystickButton(manipulatorJoystick, RIGHT_BUMPER_XBOX);
+  //Button lockLift = new JoystickButton(manipulatorJoystick, RIGHT_BUMPER_XBOX);
 
-  Button lightSensor = new JoystickButton(driverJoystick, BUTTON_9_JOYSTICK);
+  //Button lightSensor = new JoystickButton(driverXBox, BUTTON_9_JOYSTICK);
 
 
   public OI() {
@@ -96,30 +93,30 @@ public class OI {
     turnRightButton.whenPressed(new GyroscopeTurn(3));
     turnLeftButton.whenPressed(new GyroscopeTurn(-3));
 
-    turnRight90Button.whenPressed(new GyroscopeTurn(-90));
-    turnLeft90Button.whenPressed(new GyroscopeTurn(90));
+    //turnRight90Button.whenPressed(new GyroscopeTurn(-90));
+    //turnLeft90Button.whenPressed(new GyroscopeTurn(90));
   
 
     switchCamera.whenPressed(new SwitchCamera());
 
-    driveOffHab.whenPressed(new RightCargoAuto());
+    //driveOffHab.whenPressed(new RightCargoAuto());
     //driveOntoHab.whenPressed(new DriveHABMotor());
 
     autoReverse.whenPressed(new ReverseHoldLift());
 
-    lockLift.whenPressed(new LockLift(RobotMap.LOCK_LIFT_SPEED)); //THIS IS A HOLDER VALUE, FIGURE OUT WHAT SPEED THE LIFT DRIFTS DOWN AT!!! please
+    //lockLift.whenPressed(new LockLift(RobotMap.LOCK_LIFT_SPEED)); //THIS IS A HOLDER VALUE, FIGURE OUT WHAT SPEED THE LIFT DRIFTS DOWN AT!!! please
     
-    lightSensor.whenPressed(new LightSensor(100));
+    //lightSensor.whenPressed(new LightSensor(100));
     
 
   }
 
-  public Joystick getDriverJoystick() {
-    return driverJoystick;
+  public XboxController getDriverXBox() {
+    return driverXBox;
   }
 
-  public XboxController getXboxController() {
-    return manipulatorJoystick;
+  public XboxController getControllerXBox() {
+    return controllerXBox;
   }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a

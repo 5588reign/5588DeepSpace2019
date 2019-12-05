@@ -38,7 +38,7 @@ public class RobotMap {
   public static final int BACK_MIDDLE_READING = 4;
 
 
-  public static final double LOCK_LIFT_SPEED = .1;
+  //public static final double LOCK_LIFT_SPEED = .1;
 
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.

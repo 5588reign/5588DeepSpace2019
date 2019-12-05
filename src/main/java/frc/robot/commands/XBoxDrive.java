@@ -13,8 +13,8 @@ import frc.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class JoystickDrive extends Command {
-  public JoystickDrive() {
+public class XBoxDrive extends Command {
+  public XBoxDrive() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.drive);
   }
@@ -27,7 +27,9 @@ public class JoystickDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drive.driveJoystick(Robot.m_oi.getDriverJoystick());
+    //Robot.drive.driveXBoxController(Robot.m_oi.getDriverXBox());
+    Robot.drive.throttleXBoxController(Robot.m_oi.getDriverXBox());
+    Robot.drive.directionXboxController(Robot.m_oi.getDriverXBox());
   }
 
   // Make this return true when this Command no longer needs to run execute()

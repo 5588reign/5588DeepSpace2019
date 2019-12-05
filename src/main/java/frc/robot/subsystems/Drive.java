@@ -11,12 +11,13 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.JoystickDrive;
+//import frc.robot.commands.JoystickDrive;
+import frc.robot.commands.XBoxDrive;
 import frc.robot.*;
 
 /**
@@ -77,12 +78,24 @@ public class Drive extends Subsystem implements MotherSystem {
     frontRightMotor.set(ControlMode.PercentOutput, rightSpeed);
   }
 
-  public void driveJoystick(Joystick joystick) { 
-    double leftSpeed = interpretSpeed(-joystick.getRawAxis(1)) + interpretSpeed(joystick.getRawAxis(0));
-    double rightSpeed = interpretSpeed(-joystick.getRawAxis(1)) - interpretSpeed(joystick.getRawAxis(0));
-    setSpeed(leftSpeed, rightSpeed);
+  // public void driveXBoxController(XboxController joystick) { 
+  //   double leftSpeed = interpretSpeed(-joystick.getRawAxis(5)) + interpretSpeed(joystick.getRawAxis(4));
+  //   double rightSpeed = interpretSpeed(-joystick.getRawAxis(5)) - interpretSpeed(joystick.getRawAxis(4));
+  //   setSpeed(leftSpeed, rightSpeed);
+  //   //to code for direction/throttle on different thumbsticks: change axis number 
+  // }
+ 
+  //experimental throttle/direction thumbsticks
+   
+  public void throttleXBoxController(XboxController joystick) {
+    double speed = interpretSpeed(-joystick.getRawAxis(5));
+    setSpeed(speed, speed);
   }
 
+  public void directionXboxController(XboxController joystick) {
+    double speed = interpretSpeed(joystick.getRawAxis(4));
+    setSpeed(-speed,speed);
+  }
 
   public double deadZone(double speed) {
     if (Math.abs(speed) < .025) {
@@ -120,7 +133,7 @@ public class Drive extends Subsystem implements MotherSystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new JoystickDrive());
+    setDefaultCommand(new XBoxDrive());
   }
 
 }

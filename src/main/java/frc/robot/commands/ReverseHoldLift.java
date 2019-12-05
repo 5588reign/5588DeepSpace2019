@@ -18,7 +18,7 @@ public class ReverseHoldLift extends CommandGroup {
 
     addSequential(new HatchGrabber(true));
     addSequential(new EncoderDrive(10, 0), .5);
-    addParallel(new LockLift(RobotMap.LOCK_LIFT_SPEED), .5);
+   // addParallel(new LockLift(RobotMap.LOCK_LIFT_SPEED), .5);
     addParallel(new EncoderDrive(-5, -.2));
     // Add Commands here:
     // e.g. addSequential(new Command1());
